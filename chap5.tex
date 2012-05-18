@@ -5,3 +5,5 @@
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{CameraCL Android Application}
+
+In CloudCamera, every request is sent to the cloud server. The cloud server keeps a dictionary linking each region to its newest photo.  Codewise, CloudCamera only has one file: CameraCloud.java that is analogous to DiplomaCamera’s StatusActivity.java, but instead of sending UDP packets, CloudCamera sends HTTP post requests. 

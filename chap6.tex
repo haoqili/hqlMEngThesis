@@ -4,9 +4,53 @@
 %% You can process specific files by typing their names in at the 
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
-\chapter{Experiments}
+\chapter{Experiments and Code Improvements}
 
-\section{Experiment 1}
+We performed a total of 6 data-collection experiments in a span of almost 2 months. Through time, the apps had fewer bugs and more robust code bases. However, it was impossible to fix the most critical issue -- the Wifi range and consistency of the phones. The interference of 20 phones carried by 10 people moving simultaneously and randomly made collecting meaningful data infeasible with the current Wifi abilities of the phones. In the final 2 experiments, we resorted to a controlled indoors experiment with minimal Wifi interference and obtained more expected results.
+\\
+\\
+Two pre-experiments were conducted.
+\\
+\\
+Pre-experiment 1: Test DIPLOMA multi-hop and phone WiFi range
+
+Three people, each held a Galaxy Note phone, conducted the experiment outside northeastern entrance of the Stata Center. One person stood at the corner of the entrance while the other two people each stood along a different wall. The phones were held vertically, the outer phones faced the middle phone. There were no obstructions in the path of transmission. We would later find out that the range from this test would be too optimistic for multi-user experiments where users moved around and obstructed each other all the time. By first disabling CameraDP on the middle phone, we increased the distance between the middle phone to the two outer phones until the outer phones could not consistently complete GET requests, i.e. they were out of each other's WiFi range. This distance was about 20 meters for each leg. We then turned on CameraDP on the middle phone and observed that GET requests between the two outer phones worked again, demonstrating that DIPLOMA multi-hop at least works for three phones. 
+
+While outside, we also conducted a 2-phone range test on an open field, where Phone A was stationary and Phone B moved away. When Phone B took a new picture, a hand gesture was shown and Phone A would try to get this newest picture. The GET requests did not work if the two phones stood more than 20 meters apart. However, when we used {\it ping}, the range of success increased to at least 25 meters.
+\\
+\\
+Pre-experiment 2: Test phone WiFi range at 436 Mass Ave
+
+Two people holding two Galaxy Note phones walked near 436 Mass Ave using CameraDP. Even though all future outdoor experiments were conducted strictly on the eastern sidewalk of Mass Ave, this experiment was also run on both sidewalks. The phones successfully got each other's pictures at opposite ends of Mass Ave.
+\\
+\\
+Outdoor experiment setup:
+
+The volunteers holding the phones were instructed to walk around independently and freely in the valid regions, pressing buttons to take and get pictures at their own will and pace. During runs where volunteers to hold a phone running CameraDP in one hand and a phone running CameraCL in the other hand, the volunteers were instructed to press buttons in the same order on both phones.
+
+The volunteers did not know the details of DIPLOMA other than the fact that regions exist. However from the second experiment onwards, the UI improved so that unfavorable circumstances would prevent GET and TAKE buttons from working. Examples of unfavorable circumstances include: walking out of the valid regions, phones in a state other than LEADER or NONLEADER.
+
+
+\section{Experiment 1: The discovery of many fatal issues on multiple phones}
+
+Location: 77 Massachusetts Avenue\\
+Date: March 15, 2012\\
+Weather: Drizzling and cold\\
+Phones: 20 Nexus S: 10 running CameraDP, 10 running CameraCL\\
+People: 10 People: each held 1 CameraDP and 1 CameraCL\\
+Regions: 6 linear regions each with width 52 meters\\
+Files:\\
+Code version; {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/81e87e790c13ed3c8c4cd45703528e5216f04ec4}}\\
+Phone logs and scripts: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/master/camera_diploma_exp1_data}}\\ 
+CameraDP notes: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/camera_diploma_exp1_data/diploma_notes.md}}\\
+CloudDP notes: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/camera_diploma_exp1_data/cloud_notes.md}}\\
+\\
+Before walking to 77 Mass Ave, the servers and the apps were started with Region 0 located at the intersection of Amherst St and Mass Ave and the regions increment northwestwards.
+
+No usable quantitative data was extracted from this experiment due to the frequent crashes on both the CameraDP app and CameraCL. Insufficient and inadequate stress testing beforehand meant that these problems were not discovered until the experiment started. Later analysis revealed that the crashes were mainly due to two reasons: double pressing the TAKE button and an OutOfMemory error caused by the camera interface using up too much VM heap. 
+
+The region width was too large, preventing successful communication even for phones in the same region. Compounded to this was a bug that forced users to walk to region 0 whenever the apps crashed. The region assignment based on GPS was observed to be robust. There were no requests generated from outside of region 3.
+
 \section{Experiment 2}
 \section{Experiment 3}
 \section{Experiment 4}

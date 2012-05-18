@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  18 MAY 2012 04:12
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  18 MAY 2012 11:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -331,6 +331,12 @@ Chapter 2.
 
 ]
 Chapter 3.
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
 ) [13]
 \openout2 = `chap4.aux'.
 
@@ -340,37 +346,89 @@ Chapter 3.
 
 ]
 Chapter 4.
-) [15]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+[15]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+) [16] [17]
 \openout2 = `chap5.aux'.
 
- (./chap5.tex [16
+ (./chap5.tex [18
 
 
 
 ]
 Chapter 5.
-) [17]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+) [19]
 \openout2 = `chap6.aux'.
 
- (./chap6.tex [18
+ (./chap6.tex [20
 
 
 
 ]
 Chapter 6.
-) [19]
+) [21]
 \openout2 = `chap7.aux'.
 
- (./chap7.tex [20
+ (./chap7.tex [22
 
 
 
 ]
 Chapter 7.
-) [21]
+) [23]
 \openout2 = `biblio.aux'.
 
- (./biblio.tex [22
+ (./biblio.tex [24
 
 
 
@@ -378,26 +436,27 @@ Chapter 7.
 
 LaTeX Warning: Empty `thebibliography' environment on input line 16.
 
-) [23] (./main.aux (./cover.aux) (./contents.aux) (./chap1.aux) (./chap2.aux)
+) [25] (./main.aux (./cover.aux) (./contents.aux) (./chap1.aux) (./chap2.aux)
 (./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./chap7.aux)
 (./biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2812 strings out of 493633
- 36128 string characters out of 3143378
- 94207 words of memory out of 3000000
- 5989 multiletter control sequences out of 15000+200000
- 11460 words of font info for 44 fonts, out of 3000000 for 9000
+ 2792 strings out of 493633
+ 35976 string characters out of 3143378
+ 93956 words of memory out of 3000000
+ 5968 multiletter control sequences out of 15000+200000
+ 11807 words of font info for 45 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,7n,43p,924b,169s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,7n,43p,1089b,169s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb>
-Output written on main.pdf (23 pages, 59693 bytes).
+cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti12.pfb>
+Output written on main.pdf (25 pages, 75534 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 105 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
