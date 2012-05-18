@@ -1,0 +1,13 @@
+\contentsline {chapter}{\numberline {1}Introduction and Motivation}{9}
+\contentsline {chapter}{\numberline {2}Background on DIPLOMA}{11}
+\contentsline {chapter}{\numberline {3}User Interface and Functionality of both Camera Apps}{13}
+\contentsline {chapter}{\numberline {4}CameraDP Android Application}{15}
+\contentsline {chapter}{\numberline {5}CameraCL Android Application}{17}
+\contentsline {chapter}{\numberline {6}Experiments}{19}
+\contentsline {section}{\numberline {6.1}Experiment 1}{19}
+\contentsline {section}{\numberline {6.2}Experiment 2}{19}
+\contentsline {section}{\numberline {6.3}Experiment 3}{19}
+\contentsline {section}{\numberline {6.4}Experiment 4}{19}
+\contentsline {section}{\numberline {6.5}Experiment 5}{19}
+\contentsline {section}{\numberline {6.6}Experiment 6}{19}
+\contentsline {chapter}{\numberline {7}Discussion and Conclusion}{21}
