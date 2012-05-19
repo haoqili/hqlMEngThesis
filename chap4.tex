@@ -5,8 +5,6 @@
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{CameraDP Android Application}
-* NO discussion on hysteresis (it's discussed in previous section)
-* Region width - leader spacing --- where is that?
 
 The DIPLOMA design introduces a leader in each of the regions.  The leaders take care of all the requests coming from all phones (clients) in the region.  When a phone takes a new photo, it broadcasts the photo data to its leader, where the photo is saved. When a phone requests a photo from Region X, this request is broadcasted to its leader, which in turn uses DIPLOMA to relay the request and receive Region X’s photo data from X’s leader.
 

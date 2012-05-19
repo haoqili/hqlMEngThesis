@@ -12,11 +12,7 @@ From the user's point of view, CameraDP and CameraCL are identical. Both apps al
 
 The rest of the UI are add-ons to help debugging in the process. Log messages are displayed in the middle. Success rates of TAKEs and GETs are displayed on the bottom of the screen, along with request latency information. The textfield is for setting a new region width. Remember when changing the region width on one phone, all the other phones involved must have the region width changed as well to keep the region assignments consistent among all phones. 
 
-The last button is a switch for hysteresis, allowing you to pick different percentages of the region width you want to be applied to be the hysteresis buffer region. If hysteresis is set, the region of the phone cannot be changed inside the few meters (based on the hysteresis percentage chosen) around the boundaries of the regions. The reason for this was because we were worried that the GPS would be very imprecise and cause phone standing near region boundaries to flicker between 2 regions.  
-
-The downside of hysteresis is that you want to change regions at those boundary areas. Compounded with the fact that phones have internal offsets, adding a hysteresis made everything confusing when the region sizes are now only 20 meters in length. So for a large percentage of a region area, phones next to each other had different regions. This caused me to add a hystereses selector that defaults to 0\% of hysteresis, i.e. no hysteresis. Hysteresis was only used in the first 2 experiments and we have noticed no adverse affects so far after having hysteresis set to 0.
-
-In our experiment, six square consecutive regions (0 to 5) about 30 meters wide were created along a stretch of busy road. Users walked around and pressed buttons on the apps to take new photos or request photos from different regions. With two apps on two different phones, the users synchronized the button presses so that sequences of events for the two app types are similar. We record the number of success of requests and the latency of the responses.
+The last button is a switch for hysteresis, allowing you to pick different percentages of the region width you want to be applied to be the hysteresis buffer region. If hysteresis is set, the region of the phone cannot be changed inside the hysteresis region, the few meters (based on the hysteresis percentage chosen) around the boundaries of the regions. Hysteresis was set to 0 after Experiment 2 due to its complications discussed in the previous chapter.
 
 
 
