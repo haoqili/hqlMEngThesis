@@ -3,11 +3,13 @@
 \contentsline {chapter}{\numberline {3}User Interface and Functionality of both Camera Apps}{13}
 \contentsline {chapter}{\numberline {4}CameraDP Android Application}{15}
 \contentsline {chapter}{\numberline {5}CameraCL Android Application}{19}
-\contentsline {chapter}{\numberline {6}Experiments}{21}
-\contentsline {section}{\numberline {6.1}Experiment 1}{21}
-\contentsline {section}{\numberline {6.2}Experiment 2}{21}
-\contentsline {section}{\numberline {6.3}Experiment 3}{21}
-\contentsline {section}{\numberline {6.4}Experiment 4}{21}
-\contentsline {section}{\numberline {6.5}Experiment 5}{21}
-\contentsline {section}{\numberline {6.6}Experiment 6}{21}
-\contentsline {chapter}{\numberline {7}Discussion and Conclusion}{23}
+\contentsline {chapter}{\numberline {6}Experiments and Code Improvements}{21}
+\contentsline {section}{\numberline {6.1}Experiment 1: The discovery of many fatal issues on multiple phones}{23}
+\contentsline {subsection}{\numberline {6.1.1}Improvements}{24}
+\contentsline {section}{\numberline {6.2}Experiment 2}{25}
+\contentsline {subsection}{\numberline {6.2.1}Improvements}{27}
+\contentsline {section}{\numberline {6.3}Experiment 3}{28}
+\contentsline {section}{\numberline {6.4}Experiment 4}{28}
+\contentsline {section}{\numberline {6.5}Experiment 5}{28}
+\contentsline {section}{\numberline {6.6}Experiment 6}{28}
+\contentsline {chapter}{\numberline {7}Discussion and Conclusion}{29}

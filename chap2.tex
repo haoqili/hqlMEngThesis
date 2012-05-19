@@ -5,3 +5,15 @@
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{Background on DIPLOMA}
+
+* DIPLOMA hop cutting (all regions in a chain have to be populated
+
+* width thing
+
+---
+* server region leader timeout for new leader
+
+* ergion width stuff
+At this time, we failed to realize the region size should be small enough so that 2 phones anywhere inside 2 adjacent regions could hear each other, not 1 region. Since the leaders must be able to talk to adjancent leaders. If the region widths are set as the limiting range of the phones (20 meters in our case), the only way a DIPLOMA multi-hop would work is if the leaders are exactly 20 meters from each other. If one leaders just moves a little bit, it will fall out of range of the farther neighboring leader and thus breaking DIPLOMA multi-hops.
+    Even though technically the region width should be half of the phone range, with the GPS inaccuracy of the phones, setting the region width to 10 meters is not ideal. If the regions are too small, and the phone's inate GPS inaccuracies varies a lot, we could end up with insensible region allocations. In the worst case, region monotonicity may be broken, e.g. a phone could be erroneously assigned to region 2, between a region 3 and region 4 phone. Without region monotonicity, DIPLOMA multi-hop would not be concrete.
+    When we realized this, we made it possible to *change the region's width* from the UI. The default is still 20 meters.

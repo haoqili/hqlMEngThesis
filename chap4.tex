@@ -5,6 +5,12 @@
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{CameraDP Android Application}
+* LEADER/JOIN/NONLEADER
+* discussion on hysteresis
+* Region width - leader spacing --- where is that?
+* Use CameraSurfaceView
+   The reason for this change was because the *intent/sd card solution only works on Nexus S phones, not Galaxy Notes* phones. In Galaxy Notes, the Mux is killed and restarted before and after the camera intent (because StatusActivity is paused), causing a "Cannot open socketAddress already in use" error: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/8de606e548b4854807ea91a4822b7638a250843c/logcats/galaxy_note_camera_crash.txt#L470}}
+    CameraSurfaceView fixes this problem because StatusActivity never has to be paused when taking a photo. Since it works on both types of phones, we used this solution for both.
 
 
 The DIPLOMA design introduces a leader in each of the regions.  The leaders take care of all the requests coming from all phones (clients) in the region.  When a phone takes a new photo, it broadcasts the photo data to its leader, where the photo is saved. When a phone requests a photo from Region X, this request is broadcasted to its leader, which in turn uses DIPLOMA to relay the request and receive Region X’s photo data from X’s leader.
