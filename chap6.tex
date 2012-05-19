@@ -67,7 +67,7 @@ The Region 0 bug
 
 The bug that causes users to reset from region 0 after every crash was fixed. The bug came about from the logic to prevent inaccuracies in the GPS location. From pre experiment GPS testing, we observed some rare cases where GPS was greatly off for a few seconds. In this case, the the region assignment would unrealistically jump multiple regions. So we put in the logic that unless a new region differs from the old region by 1, the old region remains the same. The code initializes the region to be -1. During Experiment 1, our logic backfired if the app crashes inside regions 1 or above. Since the app would restart and be set to -1 and GPS would indicate the new region should be 1 or above, the logic prevents the old region to be changed unless the user walks back to region 0, the only region that is 1 away from -1.
 
-After Experiment 1, we removed the GPS check and let the regions to be updated to any new region of any distance away from the old region. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
+After Experiment 1, we removed the GPS and hysteresis check and let the regions to be updated to any new region of any distance away from the old region. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

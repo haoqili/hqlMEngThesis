@@ -4,32 +4,33 @@
 %% You can process specific files by typing their names in at the 
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
-\chapter{Background on DIPLOMA}
+\chapter{User Interface and Functionality Common to Both Camera Apps}
 
-* DIPLOMA hop cutting (all regions in a chain have to be populated
-* LEADER/JOIN/NONLEADER
+CameraDP and CameraCL, unlike traditional photo sharing apps where each phone functions individually, assigns the phones into different regions based on their GPS locations and a region's leader collectively saves the newest photos for all the phones in the region (it's easy to change the code to save more than one phones). This implies: a) a new photo is saved on its phone's region, not the phone itself and b) a phone can only request the newest photo of a region, not of another individual phone. 
 
-* width thing
+From the user's point of view, CameraDP and CameraCL are identical. Both apps allow users to share photos among themselves using their Android phones.  The users can take new photos on their phones, by pressing the "Take Photo" button and request to see the latest photos taken by other phones by pressing the "Get X Photo" button where "X" correspond to the desired region number.  The "Take Photo" button press triggers a TAKE request in CameraDP and the "Get X Photo" button press triggers a GET request. These are the two main requests crucial to our experiments.
 
--------
-Leader transitions
-* leader go out of region TODO: add handing-off state?
-* leader is dead (cloud wait 100 secs to allow new leader)
-* leader heartbeat to the cloud and to non-leaders
+The rest of the UI are add-ons to help debugging in the process. Log messages are displayed in the middle. Success rates of TAKEs and GETs are displayed on the bottom of the screen, along with request latency information. The textfield is for setting a new region width. Remember when changing the region width on one phone, all the other phones involved must have the region width changed as well to keep the region assignments consistent among all phones. 
 
----
-* server region leader timeout for new leader
+The last button is a switch for hysteresis, allowing you to pick different percentages of the region width you want to be applied to be the hysteresis buffer region. If hysteresis is set, the region of the phone cannot be changed inside the few meters (based on the hysteresis percentage chosen) around the boundaries of the regions. The reason for this was because we were worried that the GPS would be very imprecise and cause phone standing near region boundaries to flicker between 2 regions.  
 
-* region width stuff
-At this time, we failed to realize the region size should be small enough so that 2 phones anywhere inside 2 adjacent regions could hear each other, not 1 region. Since the leaders must be able to talk to adjancent leaders. If the region widths are set as the limiting range of the phones (20 meters in our case), the only way a DIPLOMA multi-hop would work is if the leaders are exactly 20 meters from each other. If one leaders just moves a little bit, it will fall out of range of the farther neighboring leader and thus breaking DIPLOMA multi-hops.
-    Even though technically the region width should be half of the phone range, with the GPS inaccuracy of the phones, setting the region width to 10 meters is not ideal. If the regions are too small, and the phone's inate GPS inaccuracies varies a lot, we could end up with insensible region allocations. In the worst case, region monotonicity may be broken, e.g. a phone could be erroneously assigned to region 2, between a region 3 and region 4 phone. Without region monotonicity, DIPLOMA multi-hop would not be concrete.
-    When we realized this, we made it possible to *change the region's width* from the UI. The default is still 20 meters.
+The downside of hysteresis is that you want to change regions at those boundary areas. Compounded with the fact that phones have internal offsets, adding a hysteresis made everything confusing when the region sizes are now only 20 meters in length. So for a large percentage of a region area, phones next to each other had different regions. This caused me to add a hystereses selector that defaults to 0\% of hysteresis, i.e. no hysteresis. Hysteresis was only used in the first 2 experiments and we have noticed no adverse affects so far after having hysteresis set to 0.
 
---> hysteresis (only in Experiments 1 and 2)
-Get rid of hysteresis. With hysteresis, there were a few meters around the boundaries of the regions that did not allow the phones to change into a new region. The reason for this was because we were worried that the GPS would be very imprecise and cause phone standing near region boundaries to flicker between 2 regions.  
-    However, the downside of hysterisis, compounded with the fact that phones have internal offsets, made everything confusing when the region sizes are now only 20 meters in length. So for a large percentage of a region area, phones next to each other had different regions.
-    This caused me to add a hysetrisis selector that defaults to 0, i.e. no hysterisis.
-        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/ae6b6d04f2dde49e2455dfeb72de1037190d9059#L7R614}}
-        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/89219a4ad3e65f52fd500e6b89b3578cb9831ca7}}
+In our experiment, six square consecutive regions (0 to 5) about 30 meters wide were created along a stretch of busy road. Users walked around and pressed buttons on the apps to take new photos or request photos from different regions. With two apps on two different phones, the users synchronized the button presses so that sequences of events for the two app types are similar. We record the number of success of requests and the latency of the responses.
 
+
+
+
+======
+* Use CameraSurfaceView bug discussion?
+   The reason for this change was because the *intent/sd card solution only works on Nexus S phones, not Galaxy Notes* phones. In Galaxy Notes, the Mux is killed and restarted before and after the camera intent (because StatusActivity is paused), causing a "Cannot open socketAddress already in use" error: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/8de606e548b4854807ea91a4822b7638a250843c/logcats/galaxy_note_camera_crash.txt#L470}}
+    CameraSurfaceView fixes this problem because StatusActivity never has to be paused when taking a photo. Since it works on both types of phones, we used this solution for both.
+
+=========
+
+timeouts
+* bug of timeouts discussion?
+    - *N.B.* Moved code order on leaders to have better completion rates for TAKEs. Before, the buttons are enabled after the leader do all the packet processing, during which time the timeout period could have been reached and counted the completed request as a timedout. Now, enabling the buttons is the first thing the phone does after it receives a packet.
+        "It was at the very last step because I thought the photo processing should be done first. But I guess the photo processing stuff is either fast enough or it doesn't really conflict with pressing buttons, because I have not seen a failure after" this change
+        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/6164e1ce1699b87bf5a21c724130af9a6d807a19}}
 

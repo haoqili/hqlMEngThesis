@@ -11,3 +11,6 @@ Smart phones rely heavily on the Cloud to carry out extensive computations or ge
 This is an area of active research and we utilize a recently built consistent shared-memory system over ad-hoc Wifi, DIPLOMA, to test the feasibility of a popular photo-sharing app, Paranomio, on a distributed memory system relying mostly on the ad-hoc WiFi.
 
 We created a stripped-down version of Paranamio that only have two functions: TAKE new photos and GET other photos. In order to quantify the advantage of ad-hoc WiFi, we built two functionally identical apps: CameraDP and CameraCL. CameraDP uses DIPLOMA in the background while CameraCL is the control case where each request is independently sent to the cloud through a 3G or 4G connection.
+
+The two different apps are: DiplomaCamera and CloudCamera. Even though their UI are identical, DiplomaCamera handles the pictures using DIPLOMA while CloudCamera is the control of the experiment, handling all requests with the cloud.
+
