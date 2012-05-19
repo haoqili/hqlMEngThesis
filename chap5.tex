@@ -6,4 +6,6 @@
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{CameraCL Android Application}
 
-In CloudCamera, every request is sent to the cloud server. The cloud server keeps a dictionary linking each region to its newest photo.  Codewise, CloudCamera only has one file: CameraCloud.java that is analogous to DiplomaCamera’s StatusActivity.java, but instead of sending UDP packets, CloudCamera sends HTTP post requests. 
+In CameraCL, every request is sent to the cloud server. The cloud server keeps a dictionary linking each region to its newest photo.  CameraCL only has one important file: CameraCloud.java that is analogous to DiplomaCamera’s StatusActivity.java, but instead of sending UDP packets, CloudCamera sends HTTP post requests. Latency is calculated from the difference of the time stamps surrounding the line that executes the http request.
+
+The server returns a status for every request. For TAKE requests, this status indicates if the photo was saved successfully. For GET Requests, a status of failure does not distinguish between a null region or a region without any photo uploads.

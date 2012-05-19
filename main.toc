@@ -1,17 +1,17 @@
 \contentsline {chapter}{\numberline {1}Introduction and Motivation}{9}
 \contentsline {chapter}{\numberline {2}Background on DIPLOMA}{11}
-\contentsline {chapter}{\numberline {3}User Interface and Functionality Common to Both Camera Apps}{15}
-\contentsline {chapter}{\numberline {4}CameraDP Android Application}{17}
-\contentsline {chapter}{\numberline {5}CameraCL Android Application}{19}
-\contentsline {chapter}{\numberline {6}Experiments and Code Improvements}{21}
-\contentsline {section}{\numberline {6.1}Experiment 1}{23}
-\contentsline {subsection}{\numberline {6.1.1}Improvements}{24}
-\contentsline {section}{\numberline {6.2}Experiment 2}{25}
-\contentsline {subsection}{\numberline {6.2.1}Improvements}{28}
-\contentsline {section}{\numberline {6.3}Experiment 3}{29}
-\contentsline {section}{\numberline {6.4}Experiment 4}{31}
-\contentsline {subsection}{\numberline {6.4.1}Improvements}{33}
-\contentsline {section}{\numberline {6.5}Experiment 5}{34}
-\contentsline {subsection}{\numberline {6.5.1}Improvements}{35}
-\contentsline {section}{\numberline {6.6}Experiment 6}{35}
-\contentsline {chapter}{\numberline {7}Discussion and Conclusion}{39}
+\contentsline {chapter}{\numberline {3}User Interface, Functionality Common to Both Camera Apps}{15}
+\contentsline {chapter}{\numberline {4}CameraDP Android Application}{19}
+\contentsline {chapter}{\numberline {5}CameraCL Android Application}{23}
+\contentsline {chapter}{\numberline {6}Experiments and Code Improvements}{25}
+\contentsline {section}{\numberline {6.1}Experiment 1}{27}
+\contentsline {subsection}{\numberline {6.1.1}Improvements}{28}
+\contentsline {section}{\numberline {6.2}Experiment 2}{29}
+\contentsline {subsection}{\numberline {6.2.1}Improvements}{32}
+\contentsline {section}{\numberline {6.3}Experiment 3}{33}
+\contentsline {section}{\numberline {6.4}Experiment 4}{35}
+\contentsline {subsection}{\numberline {6.4.1}Improvements}{37}
+\contentsline {section}{\numberline {6.5}Experiment 5}{38}
+\contentsline {subsection}{\numberline {6.5.1}Improvements}{39}
+\contentsline {section}{\numberline {6.6}Experiment 6}{39}
+\contentsline {chapter}{\numberline {7}Discussion and Conclusion}{43}

@@ -58,16 +58,16 @@ The region width was too large, preventing successful communication even for pho
 
 \subsection{Improvements}
 
-We prevented users from double clicking by using a ProgressDialog to freeze the UI. A boolean flag was introduced to double check that no additional buttons are clicked during the processing time of a previous button.
+One of the biggest reason for the crashing, on both types of phones and on both CameraDP and CamerCL was due to double clicking a request button that causes an inconsistent state by the different requests triggered in parallel. We fixed this bug by using a ProgressDialog to freeze the UI when a request is still being processed after its button click. In addition, a boolean flag was introduced as a double check to ensure that requests are strictly sequential and buttons must be pressed one at a time.
 
-The OutOfMemory error on Nexus S phones occur when multiple TAKEs were pressed one after the other. The first few TAKEs would behave normally and complete successfully. However around the third to sixth TAKE, the app would crash at the line `BitmapFactory.decodeByteArray()`, which converts the byte array of the image into a bitmap object to be displayed to the user.  To work around this problem, we added an additional parameter into the decodeByteArray function so that the byte array is downsampled once every 12th pixel, greatly reducing the memory requirement. In addition, we manually placed system garbage collection calls before the memory-intensive functions. After these two workarounds were coded, we tested the phone by continuously pressing the TAKEs over 100 times, multiple times, and did not observe any crashes.
+The OutOfMemory error on Nexus S phones occur when multiple TAKEs were pressed one after the other, which could also have contributed to the frequent crashing during the experiment. The first few TAKEs would behave normally and complete successfully. However around the third to sixth TAKE, the app would crash at the line `BitmapFactory.decodeByteArray()`, which converts the byte array of the image into a bitmap object to be displayed to the user.  To work around this problem, we added an additional parameter into the decodeByteArray function so that the byte array is downsampled once every 12th pixel, greatly reducing the memory requirement. In addition, we manually placed system garbage collection calls before the memory-intensive functions. After these two workarounds were coded, we tested the phone by continuously pressing the TAKEs over 100 times, multiple times, and did not observe any crashes.
 \\
 \\
 The Region 0 bug
 
 The bug that causes users to reset from region 0 after every crash was fixed. The bug came about from the logic to prevent inaccuracies in the GPS location. From pre experiment GPS testing, we observed some rare cases where GPS was greatly off for a few seconds. In this case, the the region assignment would unrealistically jump multiple regions. So we put in the logic that unless a new region differs from the old region by 1, the old region remains the same. The code initializes the region to be -1. During Experiment 1, our logic backfired if the app crashes inside regions 1 or above. Since the app would restart and be set to -1 and GPS would indicate the new region should be 1 or above, the logic prevents the old region to be changed unless the user walks back to region 0, the only region that is 1 away from -1.
 
-After Experiment 1, we removed the GPS and hysteresis check and let the regions to be updated to any new region of any distance away from the old region. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
+After Experiment 1, we removed this check and let the regions to be updated to any new region, whether the regions might be next to each other or not. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -716,6 +716,8 @@ and {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/experime
 In this experiment, the regions were set up similarly as before, each of area 5mx5m. The two inner regions had two phones each, one running CameraDP and the other running CameraCL. The outer regions had four phones each, two running CameraDP and two running CameraCL. The phones this time were placed flat on the stools.
 
 We forgot to turn off the GPS at the beginning and one of the phones during run 2 got a GPS fix, messing up the results. Then we proceeded to turn off all the phone's GPS. 
+
+The cloud accesses consisted of leader to cloud server heartbeats and the few initial leadership grants from the cloud. In run 3, there are 83 cloud accesses, corresponding to 1 cloud access per 3.5 TAKE or GET requests. In run 4 there are 62 cloud accesses, corresponding to 1 cloud access per 4.6 TAKE or GET requests. The cloud heartbeats were made once every 2 minutes on every LEADER.
 \\
 \\
 The Warm-Up Effect:
@@ -725,4 +727,6 @@ So for runs 3 and 4 we avoided the warm-up effect by pressing buttons in this se
 
 Since in the real world users would not be constantly making requests within seconds of each other, the more realistic data are from runs 3 and 4, which omit the warm-up effect.
 
-Without the warm-up effect, our data results are even more promising, showing a 12+x improvement in 4G (\ref{table:exp-6-run4-results}) and a 10+x improvement in latency over 3G (\ref{table:exp-6-run3-results})!
+Without the warm-up effect, our data results are even more promising, showing an average of a 2.6x improvement in 4G (\ref{table:exp-6-run4-results}) with only an 1.4\% decrease in success rate and a 16x improvement in latency over 3G (\ref{table:exp-6-run3-results}) without any decrease in success rate!
+
+The results are not surprising since 

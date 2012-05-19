@@ -4,7 +4,7 @@
 %% You can process specific files by typing their names in at the 
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
-\chapter{User Interface and Functionality Common to Both Camera Apps}
+\chapter{User Interface, Functionality Common to Both Camera Apps}
 
 CameraDP and CameraCL, unlike traditional photo sharing apps where each phone functions individually, assigns the phones into different regions based on their GPS locations and a region's leader collectively saves the newest photos for all the phones in the region (it's easy to change the code to save more than one phones). This implies: a) a new photo is saved on its phone's region, not the phone itself and b) a phone can only request the newest photo of a region, not of another individual phone. 
 
@@ -14,19 +14,8 @@ The rest of the UI are add-ons to help debugging in the process. Log messages ar
 
 The last button is a switch for hysteresis, allowing you to pick different percentages of the region width you want to be applied to be the hysteresis buffer region. If hysteresis is set, the region of the phone cannot be changed inside the hysteresis region, the few meters (based on the hysteresis percentage chosen) around the boundaries of the regions. Hysteresis was set to 0 after Experiment 2 due to its complications discussed in the previous chapter.
 
+For all experiments after the first, after a user presses a TAKE request or GET request button the UI is frozen until the request is finished, preventing double clicking a button and double-sending a request. A double button click and request may cause the camera to be in an inconsistent state, causing the app to crash. There are two levels of disabling the UI, a ProgressDialog and a boolean flag. The ProgressDialog darkens the screen and shows a popup of a spinner, literally freezing the entire UI. It is dismissed when the request is finished. The boolean flag, 'areButtonsEnabled', is independent from the ProgressDialog, serving as another line of defense agains double clicks. Whenever the user clicks on a request button, the global 'areButtonsEnabled' flag is checked and the request only proceeds if the flag is true. As soon as it's determined that the request can proceed, the flag is immediately set to false so that any subsequent button clicks cannot proceed. The flag is set back to true at the completion of the request. The completion of the request could either be receiving the request reply or reaching a timeout.
 
+The camera and photo taking interface is provided by our own CameraSurfaceView class. At the beginning of development, we used the built-in camera image capturing intent, a much simpler way of retrieving pictures. When a user wants to take a picture, the phone is redirected to the Android camera snapshot mode, filling the entire phone screen with a photo preview. After the user takes a picture and is satisfied the phone goes back to the CameraDP or CameraCL app, with the picture shown at the top of the app. However this simple solution only worked on the Nexus S phones. On Galaxy Notes, a {\it Cannot open socket ... Address already in use} error comes up and causes the app to crash. Somehow, the built-in camera interface works differently on Galaxy Notes by leaving the original CameraDP or CameraCL app in a different state when the phone switches to the snapshot mode. After switching to CameraSurfaceView, we no longer see the error, because the camera preview and photo taking process is directly integrated into the CameraDP or CameraCL app itself, so we never have to leave the app to take a picture. It provided a friendlier UI because the users can see a preview of the picture at any point, directly in the CameraDP or CameraCL app. Since CameraSurfaceView works on both types of phones, we used this solution for both.
 
-
-======
-* Use CameraSurfaceView bug discussion?
-   The reason for this change was because the *intent/sd card solution only works on Nexus S phones, not Galaxy Notes* phones. In Galaxy Notes, the Mux is killed and restarted before and after the camera intent (because StatusActivity is paused), causing a "Cannot open socketAddress already in use" error: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/8de606e548b4854807ea91a4822b7638a250843c/logcats/galaxy_note_camera_crash.txt#L470}}
-    CameraSurfaceView fixes this problem because StatusActivity never has to be paused when taking a photo. Since it works on both types of phones, we used this solution for both.
-
-=========
-
-timeouts
-* bug of timeouts discussion?
-    - *N.B.* Moved code order on leaders to have better completion rates for TAKEs. Before, the buttons are enabled after the leader do all the packet processing, during which time the timeout period could have been reached and counted the completed request as a timedout. Now, enabling the buttons is the first thing the phone does after it receives a packet.
-        "It was at the very last step because I thought the photo processing should be done first. But I guess the photo processing stuff is either fast enough or it doesn't really conflict with pressing buttons, because I have not seen a failure after" this change
-        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/6164e1ce1699b87bf5a21c724130af9a6d807a19}}
-
+The pictures that are generated from TAKEs are both downsampled and compressed in the JPEG format to between 2000 and 6000 bytes before sent to the local LEADERs to be saved. Since Wifi connection is weak, packets containing larger photos are more prone to get dropped. Even though CameraCL does not use Wifi, the images are resized in the same way for fair comparison.
