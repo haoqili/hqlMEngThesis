@@ -32,13 +32,16 @@ The volunteers did not know the details of DIPLOMA other than the fact that regi
 
 If an app hangs for a certain period of time, the Android operating system would prompt a message saying "xxx is not responding. Would you like to close it? 'Wait' 'Okay'". We instructed the volunteers that they must press "Wait", not "Okay". If 'Okay' is pressed, the CameraDP might crash.
 
-\section{Experiment 1: The discovery of many fatal issues on multiple phones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experiment 1}
 
 Location: 77 Massachusetts Avenue\\
 Date: March 15, 2012\\
 Weather: Drizzling and cold\\
 Phones: 20 Nexus S: 10 running CameraDP, 10 running CameraCL\\
-People: 10 People: each held 1 CameraDP and 1 CameraCL\\
+People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
 Regions: 6 linear regions each with width 52 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/81e87e790}}\\
@@ -66,13 +69,16 @@ The bug that causes users to reset from region 0 after every crash was fixed. Th
 
 After Experiment 1, we removed the GPS check and let the regions to be updated to any new region of any distance away from the old region. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiment 2}
 
 Location: 436 Massachusetts Avenue\\
 Date: April 6, 2012\\
 Weather: Sunny and cold\\
 Phones: 20 Nexus S and 20 Galaxy Notes: each with 10 running CameraDP, 10 running CameraCL\\
-People: 10 People: each held 1 CameraDP and 1 CameraCL\\
+People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
 Regions: 6 linear regions each with width 52 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/b8a64242d4e6974c74d1c86abdfbb277b5e25f60}}\\
@@ -184,6 +190,8 @@ Run 3:
 Noticing that phones were stalling on JOIN, as if each time the server has to time out a region leader to let a new leader in, we decided to have stationary leaders. First we positioned individual people in the different regions and observed that they became leaders of their regions. After all the 6 leaders are set up, we had 2 non-leader phones as well as all the leaders pressing buttons (the other 2 people were monitoring the server, restarting it when necessary). The 2 non-leaders could walk around. 
 
 There were fewer JOIN request hangs in this run. Later we would discover bugs in DIPLOMA that fixed these hangs.
+
+The low CameraDP GET success, see Tables \ref{table:exp-2-4g-results} and \ref{table:exp-2-3g-results}, was a concern and we decided to improve the setup and code for another experiment. Also note from the result tables that CameraDP had higher success rates and lower latencies with 3G than 4G.
 \\
 \\
 \subsection{Improvements}
@@ -193,11 +201,528 @@ The region width of 52 meters were too big. So phones within a region could not 
 
 The phones were not at their optimal arrangement for ad-hoc Wifi communication. The volunteers held the phones flat on their palms, which in Experiment 4 was discovered that this horizontal configuration reduced the Wifi range of the phones. In addition, people were facing different directions. Wifi range is reduced greatly behind a person's back. Since the regions were linear and not circular, transmitting through the back was inevitable.
 
-Most of the time half of the regions were unpopulated, which would cause multi-hop problems in DIPLOMA, since Wifi hops in a chain would only work if there are leaders present in all the regions of the chain.
+Most of the time half of the regions were unpopulated, which would cause multi-hop problems in CameraDP, since Wifi hops in a chain would only work if there are leaders present in all the regions of the chain.
 
 Since hermes5 would drop periodically, we switched to a more reliable server for future experiments.
 
+We added acks for first and final legs of CameraDP, so that there are 4 chances to make the first leg or final leg succeed. However after the later experiments we found that this addition did not improve results drastically, possibly due to the 4 repeated sends occurred within 1 second, during which time the status of the Wifi would not likely to be changed. Note that these acks had a bug that was not fixed until Experiment 5.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiment 3}
+
+Location: 77 Massachusetts Avenue\\
+Date: April 25, 2012\\
+Weather: Sunny\\
+Phones: 20 Nexus S and 20 Galaxy Notes: each with 10 running CameraDP, 10 running CameraCL\\
+People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
+Regions: 6 linear regions each with width 20 meters\\
+Files:\\
+Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/e22605b1b644aa60aff54a086526d4bc0f94a7cf}}\\
+Phone logs and scripts: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/master/experiment3_april_25_2011}}\\ 
+Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/experiment3_april_25_2011/results.txt}}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 3 4G (Galaxy Notes) Results} 
+\label{table:exp-3-4g-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 82 & 111 & 75 & 105 \\
+  \hline
+  successes & 22 & 83 & 17 & 58 \\
+  \hline
+  percentage & 26\% & 74\% & 22\% & 55\% \\
+  \hline
+  latency mean & 206 ms & 651 ms & 1033 ms & 268 ms \\
+  \hline
+  latency stdv & 455 ms &1450 ms &1048 ms & 394 ms \\
+  \hline
+  latency median & 93 ms & 495 ms & 92 ms & 166 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 3 3G (Nexus S) Results} 
+\label{table:exp-3-3g-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 362 & 388 & 470 & 455 \\
+  \hline
+  successes & 251 & 388 & 131 & 438 \\
+  \hline
+  percentage & 69\% & 100\% & 27\% & 96\% \\
+  \hline
+  latency mean & 900 ms & 3749 ms & 1858 ms & 2704 ms \\
+  \hline
+  latency stdv & 1328 ms & 4134 ms &1355 ms & 3175 ms \\
+  \hline
+  latency median & 259 ms & 2567 ms & 2169 ms & 2264 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 3 4G (Galaxy Notes) GET Hop Results} 
+\label{table:exp-3-4g-hop-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+   & Hop 0 & Hop 1 & Hop 2 & Hop 3+ \\
+  \hline
+  requests & 23 & 28 & 21 & 3\\
+  \hline
+  success rate & 65\% & 7\% & 0\% & 0\% \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 3 3G (Nexus S) GET Hop Results} 
+\label{table:exp-3-3g-hop-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+   & Hop 0 & Hop 1 & Hop 2 & Hop 3+ \\
+  \hline
+  requests & 126 & 210 & 92 & 42\\
+  \hline
+  success rate & 86\% & 7\% & 6\% & 0\% \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+
+The first region of this experiment started around the intersection of Amherst St and Mass Ave, the last region ended around 77 Mass Ave. The location is chosen due to its much smaller number of Wifi hotspots compared to busy location last time. MIT Building 5 was the only building on the same side of the street as the experiment. Opposite the street were an MIT undergraduate dorm Maseeh Hall and the MIT Chapel.
+
+In order to have a more stable server, we used a laptop connected to the ethernet in one of the Building 5 classrooms. The connection was stable during the experiment, i.e. no server crashes occurred. One person was watching the server for the entire duration. 
+
+There were 4 runs, with the later runs of people concentrated in the first two regions. One trial with Nexus S set the region width to 10 meters instead of 20 meters, but the success rate of GETs did not improve (23\%). (see the chapter on DIPLOMA to learn about complications with smaller region sizes.)
+
+The results of the 4 trials are congregated into \ref{table:exp-3-4g-results} and \ref{table:exp-3-3g-results}. Again, CameraDP had higher success rates on 3G than 4G.  CameraDP TAKE failures came from time outs, i.e. requests that do not respond within 6 seconds, which was caused by weak Wifi conditions. For the Nexus S results, 58\% of CameraDP GET requests failed in DIPLOMA, due to the leader unable to get a response from the requested remote leader. There are two causes for DIPLOMA level failures, either the leaders were not in range with each other or at least one region in the multi-hop path were absent of a leader. The rest of the CameraDP GET requests failed due to the 6-second time out just like the case in TAKEs. For Galaxy Notes, only 22\% of CameraDP GET failures were cause by DIPLOMA.
+
+This is the last experiment where we used multi-hop. The Wifi conditions were not good enough to yield good multi-hop results, see Tables \ref{table:exp-3-4g-hop-results} and \ref{table:exp-3-3g-hop-results}, which was why we stopped using multi-hop.
+
+Due to bad Wifi connectivity outdoors, the future experiments were run indoors in a much smaller area.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiment 4}
+
+Location: Inside Stata, in the lounge closest to the Vassar/Main St intersection\\
+Date: April 30, 2012\\
+Weather: Sunny\\
+Phones: 20 Galaxy Notes: with 10 running CameraDP, 10 running CameraCL\\
+People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
+Regions: 6 2x3 or 4 2x2 regions each with width of around 5 meters\\
+Files:\\
+Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/892b9793536613366b5293eeeda3c48155e70f05}}\\
+Phone logs and scripts: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/master/experiment4_april30}}\\ 
+Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/experiment4_april30/results.txt}}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 4 Run 0 Results} 
+\label{table:exp-4-run0-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 87 & 87 & 160 & 159 \\
+  \hline
+  successes & 56 & 87 & 61 & 158 \\
+  \hline
+  percentage & 64\% & 100\% & 38\% & 99\% \\
+  \hline
+  latency mean & 362 ms & 871 ms & 853 ms & 395 ms \\
+  \hline
+  latency stdv & 652 ms &334 ms &1163 ms & 432 ms \\
+  \hline
+  latency median & 102 ms & 831 ms & 344 ms & 346 ms \\
+  \hline
+  \end{tabular}
+
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 4 Run 1 Results} 
+\label{table:exp-4-run1-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 154 & 150 & 238 & 351 \\
+  \hline
+  successes & 124 & 150 & 166 & 349 \\
+  \hline
+  percentage & 80\% & 100\% & 47\% & 99\% \\
+  \hline
+  latency mean & 526 ms & 909 ms & 830 ms & 366 ms \\
+  \hline
+  latency stdv & 965 ms & 566ms & 909 ms & 288 ms \\
+  \hline
+  latency median & 183 ms & 835 ms & 638 ms & 339 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 4 Run 2 Results} 
+\label{table:exp-4-run2-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  3G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 131 & 136 & 279 & 286 \\
+  \hline
+  successes & 103 & 136 & 192 & 280 \\
+  \hline
+  percentage & 78\% & 100\% & 68\% & 97\% \\
+  \hline
+  latency mean & 364 ms & 2302 ms & 857 ms & 1215 ms \\
+  \hline
+  latency stdv & 718 ms & 762 ms & 939 ms & 755 ms \\
+  \hline
+  latency median & 214 ms & 2171 ms & 599 ms & 1080 ms \\
+  \hline
+  \end{tabular}
+
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 4 Run 3 Results} 
+\label{table:exp-4-run3-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 153 & 152 & 189 & 168 \\
+  \hline
+  successes & 124 & 152 & 69 & 168 \\
+  \hline
+  percentage & 81\% & 100\% & 36\% & 100\% \\
+  \hline
+  latency mean & 772 ms & 726 ms & 774 ms & 347 ms \\
+  \hline
+  latency stdv & 1172 ms & 235 ms & 757 ms & 338 ms \\
+  \hline
+  latency median & 163 ms & 716 ms & 483 ms & 298 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 4 Run 4 Results} 
+\label{table:exp-4-run4-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 271 & 272 & 370 & 355 \\
+  \hline
+  successes & 202 & 272 & 147 & 354 \\
+  \hline
+  percentage & 74\% & 100\% & 39\% & 99\% \\
+  \hline
+  latency mean & 695 ms & 769 ms & 816 ms & 361 ms \\
+  \hline
+  latency stdv & 1188 ms & 311 ms & 924 ms & 316 ms \\
+  \hline
+  latency median & 146 ms & 734 ms & 444 ms & 324 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This is an indoors experiment with volunteers walking around different 5mx5m regions marked on the ground, manually pressing a button to change their region whenever a new region is entered (GPS turned off on all phones). In the 5 runs, only Run 2 used 3G (from a 3G/4G switch app).
+
+We used 6 regions only in Run 0, else we used a 2x2 4-region setup. No DIPLOMA multi-hops were used, so that means every phone must be in range of every other phone, regardless of the region. Since it Run 0 had the largest area of experiment, we would expect its success rates to be lower, but that's only the case for CameraDP TAKEs, and its CameraDP GETs result is the second lowest, only 2\% better than the lowest (\ref{table:exp-4-run0-results}). In the only 3G run CameraDP had both TAKE and GET success rates above 50\% (Table \ref{table:exp-4-run2-results}).
+
+Similar to the previous experiment, TAKE failures were mostly due to timeouts and GET failures were mostly due to a DIPLOMA failure of unable to contact remote regions. This should not have been the case since there were always at least 1 person in each region during the experiment, and leader transitions did not take very long. The first explanation is that Wifi still did not work consistently. Indeed, at one point when users were reporting low success rates, we tried {\it pinging} between two phones but failed. Another possibility could be the ack bug I introduced pre-Experiment 3.
+
+The success rates were still too low, so we thought maybe a table-top experiment would improve the percentage of success.
+
+\subsection{Improvements}
+
+We fixed the bug that caused an entire region to not be able to GET and TAKE for a period of time. This was due to an error in the ack counter, where I set the reply counter independently from the request counter when in fact the standard correct practice is for the reply counter to be the same as its request counter or at least based on it. My erroneous ack counter was based on a counter in UserApp. During every UserApp reset, the counter would be reinitialized to 0, potentially resending the same counter to the same client of a previous reply. When this client received the reply, it checks against the queue of received reply counters and finds a match, which causes the client to just ignore the reply, thinking that reply were a duplicate.
+
+I made this mistake because it did not occur to me that UserApp does not continue from region to region. The fix was simply changing the construction of the leader reply counter to be based on the request counter. Since all request counters are unique, reply counters would also be unique.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiment 5}
+
+Location: Inside Stata, in the lounge closest to the Vassar/Main St intersection\\
+Date: May 6, 2012\\
+Weather: Sunny\\
+Phones: 19 Galaxy Notes: with 10 running CameraDP, 9 running CameraCL\\
+People: 2, controlled experiment
+Regions: 6 2x3 regions each with width of around 5 meters\\
+Files:\\
+Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/aeb358fc5a8f887c4193d7612538f1f1f46ee90c}}\\
+Phone logs and scripts: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/master/experiment5_may6_indoors}}\\ 
+Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/experiment5_may6_indoors/results.txt}}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 5 Run 0 Results} 
+\label{table:exp-5-run0-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 55 & 48 & 409 & 378 \\
+  \hline
+  successes & 55 & 48 & 404 & 378 \\
+  \hline
+  percentage & 100\% & 100\% & 98\% & 100\% \\
+  \hline
+  latency mean & 131 ms & 515 ms & 180 ms & 267 ms \\
+  \hline
+  latency stdv & 61 ms & 85 ms & 165 ms & 142 ms \\
+  \hline
+  latency median & 91 ms & 525 ms & 146 ms & 215 ms \\
+  \hline
+  \end{tabular}
+
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 5 Run 1 Results} 
+\label{table:exp-5-run1-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  3G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 41 & 36 & 180 &  171 \\
+  \hline
+  successes & 41 & 36 & 180 & 171 \\
+  \hline
+  percentage & 100\% & 100\% & 100\% & 100\% \\
+  \hline
+  latency mean & 132 ms & 1960 ms & 208 ms & 717 ms \\
+  \hline
+  latency stdv & 61 ms & 793 ms & 260 ms & 727 ms \\
+  \hline
+  latency median & 104 ms & 2362 ms & 161 ms & 398 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this experiment, we placed the phones on the ground near vertically, supported by plastic phone holders on the back. The GPS were turned off again.  The phones were placed in a 2x3 regions arrangement with each region the size of 5mx5m. There were either 2, 3, or 4 phones in each region.
+
+In the two runs we would press the same buttons on all phones before moving onto a new button press on all phones. We also switched regions a few times when no other phones are pressing buttons, so that did not have any affect on the results.
+
+We noticed the average latencies for CameraCL requests were under a second when we watched many requests taking a few seconds. During Experiment 6 we would discover the reason for this peculiarity.
+
+\subsection{Improvements}
+
+We added a latency information display on the screen so that in the next experiment we could observe in real time the average latency, median latency, and the newest request's latency. This UI addition helped us find the last bit of information that would finally produce our desired results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiment 6}
+
+Location: Inside Stata, in the lounge closest to the Vassar/Main St intersection\\
+Date: May 6, 2012\\
+Weather: Sunny\\
+Phones: 19 Galaxy Notes: with 10 running CameraDP, 9 running CameraCL\\
+People: 2, controlled experiment
+Regions: 6 2x3 regions each with width of around 5 meters\\
+Files:\\
+Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/7df1600531f730d03cc824984ecb21bb60eabd63}}\\
+Phone logs and scripts: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/master/experiment6_may12_indoors}}\\ 
+Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/experiment6_may12_indoors/results_diploma.txt}}\\
+and {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/experiment6_may12_indoors/results_cloud.txt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 6 Run 1 Results} 
+\label{table:exp-6-run1-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 40 & 41 & 242 & 241 \\
+  \hline
+  successes & 40 & 41 & 242 & 241 \\
+  \hline
+  percentage & 100\% & 100\% & 100\% & 100\% \\
+  \hline
+  latency mean & 146 ms & 551 ms & 190 ms & 254 ms \\
+  \hline
+  latency stdv & 61 ms & 90 ms & 144 ms &  95 ms \\
+  \hline
+  latency median & 148 ms & 530 ms & 162 ms & 226 ms \\
+  \hline
+  \end{tabular}
+
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 6 Run 2 Results} 
+\label{table:exp-6-run2-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  3G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 20 & 20 & 111 &  94 \\
+  \hline
+  successes & 20 & 20 & 105 & 94 \\
+  \hline
+  percentage & 100\% & 100\% & 94\% & 100\% \\
+  \hline
+  latency mean & 168 ms & 2580 ms & 225 ms & 813 ms \\
+  \hline
+  latency stdv & 146 ms & 539 ms & 268 ms & 758 ms \\
+  \hline
+  latency median & 111 ms & 2464 ms & 161 ms & 415 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 6 Run 3 Results} 
+\label{table:exp-6-run3-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  3G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 40 & 40 & 249 & 242 \\
+  \hline
+  successes & 39 & 40 & 242 & 242 \\
+  \hline
+  percentage & 97\% & 100\% & 97\% & 100\% \\
+  \hline
+  latency mean & 144 ms & 2558 ms & 217 ms & 2279 ms \\
+  \hline
+  latency stdv & 69 ms & 408 ms & 261 ms & 285 ms \\
+  \hline
+  latency median & 109 ms & 2465 ms & 161 ms & 2229 ms \\
+  \hline
+  \end{tabular}
+
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htb]
+\begin{scriptsize} 
+\caption{Experiment 6 Run 4 Results} 
+\label{table:exp-6-run4-results}
+ \begin{center}
+ \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
+  \hline
+  4G & TAKEs & TAKEs & GETs & GETs \\
+  & CameraDP & CameraCL & CameraDP & CameraCL \\
+  \hline
+  total clicks & 44 & 42 & 240 &  240 \\
+  \hline
+  successes & 44 & 42 & 240 & 240 \\
+  \hline
+  percentage & 100\% & 100\% & 100\% & 100\% \\
+  \hline
+  latency mean & 144 ms & 546 ms & 178 ms & 469 ms \\
+  \hline
+  latency stdv & 84 ms & 75 ms & 116 ms & 51 ms \\
+  \hline
+  latency median & 107 ms & 534 ms & 159 ms & 469 ms \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this experiment, the regions were set up similarly as before, each of area 5mx5m. The two inner regions had two phones each, one running CameraDP and the other running CameraCL. The outer regions had four phones each, two running CameraDP and two running CameraCL. The phones this time were placed flat on the stools.
+
+We forgot to turn off the GPS at the beginning and one of the phones during run 2 got a GPS fix, messing up the results. Then we proceeded to turn off all the phone's GPS. 
+\\
+\\
+The Warm-Up Effect:
+The sequence of button presses for the first two runs were as follows: TAKE pictures on every phone one by one, then on each phone GET pictures from all the regions (0-5). We were pressing the 6 GET requests on each phone within a second of each other. As we moved from phone to phone, we observed the strange behavior that the first GET request on each phone would be many times slower than the rest of the GET requests, i.e. the GET request latency decreased drastically after the first GET of a batch of GETs. At the end of run 2, we realized that if wait a while between GET requests, the decreased latency effect was not observed.  This is a warm-up effect perhaps due to some component(s) in the phone not having to restart on latter GET presses, because the component(s) are already warmed-up.
+
+So for runs 3 and 4 we avoided the warm-up effect by pressing buttons in this sequence: first TAKE pictures on every phone, then GET region 0 on all phones, one by one, then GET region 1 on all phones, etc. So between each addition GET request on a single phone, we'll have waited about a minute, more than enough to make the warm-up effect disappear.  You can see the difference that the warm-up effect makes by comparing the decreased CameraCL GET latencies in Tables \ref{table:exp-6-run1-results} and \ref{table:exp-6-run2-results} to the normal latencies in Tables \ref{table:exp-6-run3-results} and \ref{table:exp-6-run4-results}. 
+
+Since in the real world users would not be constantly making requests within seconds of each other, the more realistic data are from runs 3 and 4, which omit the warm-up effect.
+
+Without the warm-up effect, our data results are even more promising, showing a 12+x improvement in 4G (\ref{table:exp-6-run4-results}) and a 10+x improvement in latency over 3G (\ref{table:exp-6-run3-results})!

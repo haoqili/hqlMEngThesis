@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  18 MAY 2012 22:21
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  19 MAY 2012 06:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -320,32 +320,59 @@ Chapter 1.
 
 ]
 Chapter 2.
-) [11]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+[11]
+Overfull \hbox (14.77765pt too wide) in paragraph at lines 17--21
+\OT1/cmtt/m/n/10.95 8de606e548b4854807ea91a4822b7638a250843c / logcats / galaxy
+ _ note _ camera _ crash . txt #
+ []
+
+) [12]
 \openout2 = `chap3.aux'.
 
- (./chap3.tex [12
+ (./chap3.tex
+Chapter 3.
+
+Overfull \hbox (86.30954pt too wide) in paragraph at lines 9--11
+\OT1/cmr/m/n/12 * DIPLOMA hop cut-ting (all re-gions in a chain have to be pop-
+u-lated * LEADER/JOIN/NONLEADER 
+ []
+
+[13
 
 
 
 ]
-Chapter 3.
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-[13]) [14]
+Overfull \hbox (0.14267pt too wide) in paragraph at lines 28--34
+\OT1/cmtt/m/n/10.95 DIPLOMA _ CAMERA / commit / ae6b6d04f2dde49e2455dfeb72de103
+7190d9059 # L7R614$ $https :
+ []
+
+
+Overfull \hbox (89.51059pt too wide) in paragraph at lines 28--34
+\OT1/cmtt/m/n/10.95 / / github . com / haoqili / Android _ DIPLOMA _ CAMERA / c
+ommit / 89219a4ad3e65f52fd500e6b89b3578cb9831ca7$ 
+ []
+
+) [14]
 \openout2 = `chap4.aux'.
 
  (./chap4.tex
 Chapter 4.
-
-Overfull \hbox (20.52634pt too wide) in paragraph at lines 8--14
-\OT1/cmtt/m/n/10.95 blob / 8de606e548b4854807ea91a4822b7638a250843c / logcats /
- galaxy _ note _ camera _ crash .
- []
-
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -387,20 +414,7 @@ Missing character: There is no ™ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
- [16]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-) [17]
+) [16] [17]
 \openout2 = `chap5.aux'.
 
  (./chap5.tex [18
@@ -442,137 +456,232 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--28
  []
 
 [22]
-Overfull \hbox (7.14526pt too wide) in paragraph at lines 37--51
+Overfull \hbox (7.14526pt too wide) in paragraph at lines 40--54
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / 81e87e790$ 
  []
 
 
-Overfull \hbox (2.37187pt too wide) in paragraph at lines 37--51
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 40--54
 \OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
  . com / haoqili / Android _ DIPLOMA _ CAMERA / tree /
  []
 
 
-Overfull \hbox (16.8575pt too wide) in paragraph at lines 37--51
+Overfull \hbox (16.8575pt too wide) in paragraph at lines 40--54
 \OT1/cmr/m/n/12 CameraDP notes: $\OT1/cmtt/m/n/10.95 https : / / github . com /
  haoqili / Android _ DIPLOMA _ CAMERA / blob / master /
  []
 
 
-Overfull \hbox (7.7187pt too wide) in paragraph at lines 37--51
+Overfull \hbox (7.7187pt too wide) in paragraph at lines 40--54
 \OT1/cmr/m/n/12 CloudDP notes: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / blob / master /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--51
+Underfull \hbox (badness 10000) in paragraph at lines 40--54
 
  []
 
-
-Underfull \vbox (badness 1097) has occurred while \output is active []
-
- [23]
-Underfull \hbox (badness 10000) in paragraph at lines 60--64
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 63--67
 
  []
 
 [24]
-Overfull \hbox (185.35458pt too wide) in paragraph at lines 71--81
+Overfull \hbox (185.35458pt too wide) in paragraph at lines 77--87
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / b8a64242d4e6974c74d1c86abdfbb277b
 5e25f60$ 
  []
 
 
-Overfull \hbox (2.37187pt too wide) in paragraph at lines 71--81
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 77--87
 \OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
  . com / haoqili / Android _ DIPLOMA _ CAMERA / tree /
  []
 
 
-Overfull \hbox (37.11577pt too wide) in paragraph at lines 71--81
+Overfull \hbox (37.11577pt too wide) in paragraph at lines 77--87
 \OT1/cmr/m/n/12 Results: $\OT1/cmtt/m/n/10.95 https : / / github . com / haoqil
 i / Android _ DIPLOMA _ CAMERA / blob / master / experiment2 _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--81
+Underfull \hbox (badness 10000) in paragraph at lines 77--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--173
-
- []
-
-[25]
 Underfull \hbox (badness 10000) in paragraph at lines 174--179
 
  []
 
-
-Underfull \vbox (badness 1052) has occurred while \output is active []
-
- [26]
+[25]
 Underfull \hbox (badness 10000) in paragraph at lines 180--185
 
  []
 
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 186--191
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--189
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--197
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--189
+Underfull \hbox (badness 10000) in paragraph at lines 194--197
 
  []
 
-[27]) [28]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27]
+Overfull \hbox (185.35458pt too wide) in paragraph at lines 215--225
+\OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
+haoqili / Android _ DIPLOMA _ CAMERA / tree / e22605b1b644aa60aff54a086526d4bc0
+f94a7cf$ 
+ []
+
+
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 215--225
+\OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
+ . com / haoqili / Android _ DIPLOMA _ CAMERA / tree /
+ []
+
+
+Overfull \hbox (37.11577pt too wide) in paragraph at lines 215--225
+\OT1/cmr/m/n/12 Results: $\OT1/cmtt/m/n/10.95 https : / / github . com / haoqil
+i / Android _ DIPLOMA _ CAMERA / blob / master / experiment3 _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--225
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+[29] [30]
+Overfull \hbox (185.35458pt too wide) in paragraph at lines 336--346
+\OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
+haoqili / Android _ DIPLOMA _ CAMERA / tree / 892b9793536613366b5293eeeda3c4815
+5e70f05$ 
+ []
+
+
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 336--346
+\OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
+ . com / haoqili / Android _ DIPLOMA _ CAMERA / tree /
+ []
+
+
+Overfull \hbox (37.11577pt too wide) in paragraph at lines 336--346
+\OT1/cmr/m/n/12 Results: $\OT1/cmtt/m/n/10.95 https : / / github . com / haoqil
+i / Android _ DIPLOMA _ CAMERA / blob / master / experiment4 _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--346
+
+ []
+
+[31] [32] [33]
+Overfull \hbox (185.35458pt too wide) in paragraph at lines 509--519
+\OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
+haoqili / Android _ DIPLOMA _ CAMERA / tree / aeb358fc5a8f887c4193d7612538f1f1f
+46ee90c$ 
+ []
+
+
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 509--519
+\OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
+ . com / haoqili / Android _ DIPLOMA _ CAMERA / tree /
+ []
+
+
+Overfull \hbox (37.11577pt too wide) in paragraph at lines 509--519
+\OT1/cmr/m/n/12 Results: $\OT1/cmtt/m/n/10.95 https : / / github . com / haoqil
+i / Android _ DIPLOMA _ CAMERA / blob / master / experiment5 _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 509--519
+
+ []
+
+[34]
+Overfull \hbox (185.35458pt too wide) in paragraph at lines 592--603
+\OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
+haoqili / Android _ DIPLOMA _ CAMERA / tree / 7df1600531f730d03cc824984ecb21bb6
+0eabd63$ 
+ []
+
+
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 592--603
+\OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
+ . com / haoqili / Android _ DIPLOMA _ CAMERA / tree /
+ []
+
+
+Overfull \hbox (37.11577pt too wide) in paragraph at lines 592--603
+\OT1/cmr/m/n/12 Results: $\OT1/cmtt/m/n/10.95 https : / / github . com / haoqil
+i / Android _ DIPLOMA _ CAMERA / blob / master / experiment6 _
+ []
+
+
+Overfull \hbox (13.32434pt too wide) in paragraph at lines 592--603
+\OT1/cmr/m/n/12 and $\OT1/cmtt/m/n/10.95 https : / / github . com / haoqili / A
+ndroid _ DIPLOMA _ CAMERA / blob / master / experiment6 _
+ []
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 718--723
+
+ []
+
+[36]
+Underfull \vbox (badness 3471) has occurred while \output is active []
+
+ [37])
+[38]
 \openout2 = `chap7.aux'.
 
  (./chap7.tex
 Chapter 7.
-) [29
+) [39
 
 
 
-]
-\openout2 = `biblio.aux'.
-
- (./biblio.tex [30
-
-
-
-]
-
-LaTeX Warning: Empty `thebibliography' environment on input line 16.
-
-) [31] (./main.aux (./cover.aux) (./contents.aux) (./chap1.aux) (./chap2.aux)
-(./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./chap7.aux)
-(./biblio.aux)) ) 
+] (./main.aux (./cover.aux) (./contents.aux) (./chap1.aux) (./chap2.aux)
+(./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./chap7.aux)) ) 
 Here is how much of TeX's memory you used:
- 2886 strings out of 493633
- 37202 string characters out of 3143378
- 106124 words of memory out of 3000000
- 6055 multiletter control sequences out of 15000+200000
+ 2897 strings out of 493633
+ 37548 string characters out of 3143378
+ 119300 words of memory out of 3000000
+ 6070 multiletter control sequences out of 15000+200000
  14197 words of font info for 56 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  38i,9n,43p,1089b,302s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
-0.pfb>
-Output written on main.pdf (31 pages, 122416 bytes).
+</usr/l
+ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/lo
+cal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
+ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texli
+ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on main.pdf (39 pages, 146604 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
+ 160 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

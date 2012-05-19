@@ -4,13 +4,32 @@
 %% You can process specific files by typing their names in at the 
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
-\chapter{User Interface and Functionality of both Camera Apps}
+\chapter{Background on DIPLOMA}
 
-From the user's point of view, CameraDP and CameraCL are identical. Both apps allow users to share photos among themselves using their Android phones.  The users can take new photos on their phones and request to see the latest photos taken by other phones. 
+* DIPLOMA hop cutting (all regions in a chain have to be populated
+* LEADER/JOIN/NONLEADER
 
-For DIPLOMA But unlike traditional photo sharing apps where each phone functions individually, our experiment assigns the phones into different regions based on their GPS locations and a region’s phones collectively save their photos.  This implies: a) a new photo is saved on its phone’s region, not the phone itself and b) a phone can only request the newest photo of a region, not of another individual phone. 
- 
-In our experiment, six square consecutive regions (0 to 5) about 30 meters wide were created along a stretch of busy road.  Ideally, there is no limit to the number of regions as long as a phone can only belong to one region at any time. The size of the region should be as big as possible, but still small enough that phones from any points in the region are within WIFI ranges from each other. The users walked around and pressed buttons on the apps to take new photos or request photos from different regions. With two apps on two different phones, the users synchronized the button presses so that sequences of events for the two app types are similar.
+* width thing
 
-The two different apps are: DiplomaCamera and CloudCamera. Even though their UI are identical, DiplomaCamera handles the pictures using DIPLOMA while CloudCamera is the control of the experiment, handling all requests with the cloud.
+-------
+Leader transitions
+* leader go out of region TODO: add handing-off state?
+* leader is dead (cloud wait 100 secs to allow new leader)
+* leader heartbeat to the cloud and to non-leaders
+
+---
+* server region leader timeout for new leader
+
+* region width stuff
+At this time, we failed to realize the region size should be small enough so that 2 phones anywhere inside 2 adjacent regions could hear each other, not 1 region. Since the leaders must be able to talk to adjancent leaders. If the region widths are set as the limiting range of the phones (20 meters in our case), the only way a DIPLOMA multi-hop would work is if the leaders are exactly 20 meters from each other. If one leaders just moves a little bit, it will fall out of range of the farther neighboring leader and thus breaking DIPLOMA multi-hops.
+    Even though technically the region width should be half of the phone range, with the GPS inaccuracy of the phones, setting the region width to 10 meters is not ideal. If the regions are too small, and the phone's inate GPS inaccuracies varies a lot, we could end up with insensible region allocations. In the worst case, region monotonicity may be broken, e.g. a phone could be erroneously assigned to region 2, between a region 3 and region 4 phone. Without region monotonicity, DIPLOMA multi-hop would not be concrete.
+    When we realized this, we made it possible to *change the region's width* from the UI. The default is still 20 meters.
+
+--> hysteresis (only in Experiments 1 and 2)
+Get rid of hysteresis. With hysteresis, there were a few meters around the boundaries of the regions that did not allow the phones to change into a new region. The reason for this was because we were worried that the GPS would be very imprecise and cause phone standing near region boundaries to flicker between 2 regions.  
+    However, the downside of hysterisis, compounded with the fact that phones have internal offsets, made everything confusing when the region sizes are now only 20 meters in length. So for a large percentage of a region area, phones next to each other had different regions.
+    This caused me to add a hysetrisis selector that defaults to 0, i.e. no hysterisis.
+        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/ae6b6d04f2dde49e2455dfeb72de1037190d9059#L7R614}}
+        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/89219a4ad3e65f52fd500e6b89b3578cb9831ca7}}
+
 

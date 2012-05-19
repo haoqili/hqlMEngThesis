@@ -4,16 +4,25 @@
 %% You can process specific files by typing their names in at the 
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
-\chapter{Background on DIPLOMA}
+\chapter{User Interface and Functionality of both Camera Apps}
 
-* DIPLOMA hop cutting (all regions in a chain have to be populated
+From the user's point of view, CameraDP and CameraCL are identical. Both apps allow users to share photos among themselves using their Android phones.  The users can take new photos on their phones and request to see the latest photos taken by other phones. 
 
-* width thing
+For DIPLOMA But unlike traditional photo sharing apps where each phone functions individually, our experiment assigns the phones into different regions based on their GPS locations and a region’s phones collectively save their photos.  This implies: a) a new photo is saved on its phone’s region, not the phone itself and b) a phone can only request the newest photo of a region, not of another individual phone. 
+ 
+In our experiment, six square consecutive regions (0 to 5) about 30 meters wide were created along a stretch of busy road.  Ideally, there is no limit to the number of regions as long as a phone can only belong to one region at any time. The size of the region should be as big as possible, but still small enough that phones from any points in the region are within WIFI ranges from each other. The users walked around and pressed buttons on the apps to take new photos or request photos from different regions. With two apps on two different phones, the users synchronized the button presses so that sequences of events for the two app types are similar.
 
----
-* server region leader timeout for new leader
+The two different apps are: DiplomaCamera and CloudCamera. Even though their UI are identical, DiplomaCamera handles the pictures using DIPLOMA while CloudCamera is the control of the experiment, handling all requests with the cloud.
 
-* ergion width stuff
-At this time, we failed to realize the region size should be small enough so that 2 phones anywhere inside 2 adjacent regions could hear each other, not 1 region. Since the leaders must be able to talk to adjancent leaders. If the region widths are set as the limiting range of the phones (20 meters in our case), the only way a DIPLOMA multi-hop would work is if the leaders are exactly 20 meters from each other. If one leaders just moves a little bit, it will fall out of range of the farther neighboring leader and thus breaking DIPLOMA multi-hops.
-    Even though technically the region width should be half of the phone range, with the GPS inaccuracy of the phones, setting the region width to 10 meters is not ideal. If the regions are too small, and the phone's inate GPS inaccuracies varies a lot, we could end up with insensible region allocations. In the worst case, region monotonicity may be broken, e.g. a phone could be erroneously assigned to region 2, between a region 3 and region 4 phone. Without region monotonicity, DIPLOMA multi-hop would not be concrete.
-    When we realized this, we made it possible to *change the region's width* from the UI. The default is still 20 meters.
+======
+* Use CameraSurfaceView
+   The reason for this change was because the *intent/sd card solution only works on Nexus S phones, not Galaxy Notes* phones. In Galaxy Notes, the Mux is killed and restarted before and after the camera intent (because StatusActivity is paused), causing a "Cannot open socketAddress already in use" error: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/8de606e548b4854807ea91a4822b7638a250843c/logcats/galaxy_note_camera_crash.txt#L470}}
+    CameraSurfaceView fixes this problem because StatusActivity never has to be paused when taking a photo. Since it works on both types of phones, we used this solution for both.
+
+=========
+
+timeouts
+* bug of timeouts
+    - *N.B.* Moved code order on leaders to have better completion rates for TAKEs. Before, the buttons are enabled after the leader do all the packet processing, during which time the timeout period could have been reached and counted the completed request as a timedout. Now, enabling the buttons is the first thing the phone does after it receives a packet.
+        "It was at the very last step because I thought the photo processing should be done first. But I guess the photo processing stuff is either fast enough or it doesn't really conflict with pressing buttons, because I have not seen a failure after" this change
+        {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/commit/6164e1ce1699b87bf5a21c724130af9a6d807a19}}
