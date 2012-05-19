@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  19 MAY 2012 08:38
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  19 MAY 2012 15:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -311,27 +311,26 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 ]
 Chapter 1.
-) [9]
+) [9] [10]
 \openout2 = `chap2.aux'.
 
- (./chap2.tex [10
+ (./chap2.tex
+Chapter 2.
+[11
 
 
 
 ]
-Chapter 2.
-[11]
 Underfull \vbox (badness 5652) has occurred while \output is active []
 
- [12])
-[13]
+ [12]
+Underfull \vbox (badness 5652) has occurred while \output is active []
+
+ [13])
+[14]
 \openout2 = `chap3.aux'.
 
- (./chap3.tex [14
-
-
-
-]
+ (./chap3.tex
 Chapter 3.
 Missing character: There is no Â in font cmr12!
 Missing character: There is no € in font cmr12!
@@ -341,26 +340,26 @@ Missing character: There is no Â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no Â in font cmr12!
 Missing character: There is no ™ in font cmr12!
-[15]
-Overfull \hbox (20.52634pt too wide) in paragraph at lines 24--28
-\OT1/cmtt/m/n/10.95 blob / 8de606e548b4854807ea91a4822b7638a250843c / logcats /
- galaxy _ note _ camera _ crash .
- []
-
-[16]
-Overfull \hbox (14.77765pt too wide) in paragraph at lines 31--36
-\OT1/cmtt/m/n/10.95 haoqili / Android _ DIPLOMA _ CAMERA / commit / 6164e1ce169
-9b87bf5a21c724130af9a6d807a19$ 
- []
-
-) [17]
-\openout2 = `chap4.aux'.
-
- (./chap4.tex [18
+[15
 
 
 
 ]
+Overfull \hbox (20.52634pt too wide) in paragraph at lines 20--24
+\OT1/cmtt/m/n/10.95 blob / 8de606e548b4854807ea91a4822b7638a250843c / logcats /
+ galaxy _ note _ camera _ crash .
+ []
+
+
+Overfull \hbox (14.77765pt too wide) in paragraph at lines 27--32
+\OT1/cmtt/m/n/10.95 haoqili / Android _ DIPLOMA _ CAMERA / commit / 6164e1ce169
+9b87bf5a21c724130af9a6d807a19$ 
+ []
+
+) [16]
+\openout2 = `chap4.aux'.
+
+ (./chap4.tex
 Chapter 4.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
@@ -380,7 +379,6 @@ Missing character: There is no ™ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-[19]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -390,40 +388,45 @@ Missing character: There is no ™ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-) [20] [21]
-\openout2 = `chap5.aux'.
-
- (./chap5.tex [22
+[17
 
 
 
 ]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+) [18]
+\openout2 = `chap5.aux'.
+
+ (./chap5.tex
 Chapter 5.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-) [23]
+) [19
+
+
+
+]
 \openout2 = `chap6.aux'.
 
- (./chap6.tex [24
+ (./chap6.tex [20
 
 
 
@@ -439,7 +442,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--16
 
  []
 
-[25]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 19--23
 
  []
@@ -449,7 +452,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--28
 
  []
 
-[26]
+[22]
 Overfull \hbox (7.14526pt too wide) in paragraph at lines 40--54
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / 81e87e790$ 
@@ -478,12 +481,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--54
 
  []
 
-[27]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 63--67
 
  []
 
-[28]
+[24]
 Overfull \hbox (185.35458pt too wide) in paragraph at lines 77--87
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / b8a64242d4e6974c74d1c86abdfbb277b
@@ -512,12 +515,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--179
 
  []
 
-[29]
+[25]
 Underfull \hbox (badness 10000) in paragraph at lines 180--185
 
  []
 
-[30]
+[26]
 Underfull \hbox (badness 10000) in paragraph at lines 186--191
 
  []
@@ -535,7 +538,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 194--197
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31]
+ [27]
 Overfull \hbox (185.35458pt too wide) in paragraph at lines 215--225
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / e22605b1b644aa60aff54a086526d4bc0
@@ -562,8 +565,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 215--225
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32]
-[33] [34]
+ [28]
+[29] [30]
 Overfull \hbox (185.35458pt too wide) in paragraph at lines 336--346
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / 892b9793536613366b5293eeeda3c4815
@@ -587,7 +590,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--346
 
  []
 
-[35] [36] [37]
+[31] [32] [33]
 Overfull \hbox (185.35458pt too wide) in paragraph at lines 509--519
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / aeb358fc5a8f887c4193d7612538f1f1f
@@ -611,7 +614,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 509--519
 
  []
 
-[38]
+[34]
 Overfull \hbox (185.35458pt too wide) in paragraph at lines 592--603
 \OT1/cmr/m/n/12 Code ver-sion: $\OT1/cmtt/m/n/10.95 https : / / github . com / 
 haoqili / Android _ DIPLOMA _ CAMERA / tree / 7df1600531f730d03cc824984ecb21bb6
@@ -636,21 +639,21 @@ Overfull \hbox (13.32434pt too wide) in paragraph at lines 592--603
 ndroid _ DIPLOMA _ CAMERA / blob / master / experiment6 _
  []
 
-[39]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 718--723
 
  []
 
-[40]
+[36]
 Underfull \vbox (badness 3471) has occurred while \output is active []
 
- [41])
-[42]
+ [37])
+[38]
 \openout2 = `chap7.aux'.
 
  (./chap7.tex
 Chapter 7.
-) [43
+) [39
 
 
 
@@ -672,10 +675,10 @@ texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
 live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
 ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texli
 ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (43 pages, 153511 bytes).
+Output written on main.pdf (39 pages, 153347 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 119 compressed objects within 2 object streams
+ 160 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
