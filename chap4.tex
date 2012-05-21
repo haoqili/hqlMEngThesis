@@ -6,24 +6,45 @@
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{CameraDP Android Application}
 
-CameraDP runs DIPLOMA in the background, which means that in each region there is a LEADER phone while the rest of the phones are NONLEADERs. The communication between the LEADERs and its NONLEADERs are through sending simple UDP packets through Wifi. The communication among LEADERs is done in DIPLOMA, where custom UDP packets are sent through Wifi. A LEADER takes care of all the requests coming from all the NONLEADERs in its region.  When a user takes a new photo, the phone broadcasts the photo data to its region's LEADER, where the photo is saved. When a user requests a photo from a remote region, this request is also sent to its leader, which in turn uses DIPLOMA to contact the remote leader.
+CameraDP runs DIPLOMA in the background, as described in Chapter 2, each region has a LEADER phone while the rest of the phones are NONLEADERs. The communication between the LEADERs and its NONLEADERs are through sending simple UDP broadcast packets through Wifi. The communication among LEADERs is done in DIPLOMA, where custom UDP packets are sent through Wifi. A LEADER takes care of all the requests coming from all the NONLEADERs in its region.  When a user takes a new photo, the phone broadcasts the photo data to its region's LEADER, where the photo is saved. When a user requests a photo from a remote region, this request is also sent to its leader, which in turn uses DIPLOMA to contact the remote leader.
 
-Besides the LEADER and NONLEADER states of DIPLOMA, a phone can be in other states when it's transitioning between regions. However, TAKE request and GET request buttons are disabled unless the phone has a LEADER or NONLEADER state due to complications of keeping consistency during region transitions, since initially when a phone steps into a new region the phone does not know the node ID/IP address of the new region's LEADER, or if a LEADER exists at all.
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=14cm]{get_request.png}
+\caption{A GET Region 3 request pathway. Each leg is sent through ad-hoc Wifi. In the first leg, the NONALEADER of Region 1 issues the GET request to its local LEADER. The second and third legs are part of DIPLOMA, with multi-hop transmissions that results in the local LEADER of Region 1 receiving the photo information from the LEADER of Region 3. Finally in the fourth leg, the local LEADER relays the photo data to the original request sender.}
+\label{fig:get-request-png}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=6cm]{take_request.png}
+\caption{A TAKE request pathway always goes to the local leader and is processed there.}
+\label{fig:take-request-png}
+\end{center}
+\end{figure}
+
+Besides the LEADER and NONLEADER states of DIPLOMA, a phone can be in other states when it's transitioning between regions. However, TAKE request and GET request buttons are disabled unless the phone has a LEADER or NONLEADER state due to complications of keeping consistency during region transitions. Since initially when a phone steps into a new region the phone does not know if a LEADER exists at that region at all.
 
 The code is divided into three big components: 
+\begin{enumerate}
+\item
+StatusActivity.java for UI and client processing
+\item
+UserApp.java for leader and remote leader functions
+\item
+The DIPLOMA java files are tweaked to support CameraDP
+\end{enumerate}
+StatusActivity.java contains listeners for the button presses that send requests to its region leader and a handler that processes replies from the region leader. Each phone has a unique id, based on the IP address of its ad-hoc wireless interface, that can help a region's leader distinguish the non-leader phones in its region.  
 
-1.  StatusActivity.java for UI and client processing
-2.  UserApp.java for leader and remote leader functions
-3.  The DIPLOMA java files are tweaked to support CameraDP
+Pressing the TAKE request button triggers its button's listener to retrieve the photo information from the CameraSurfaceView. The photo data is then put into a packet along with the phone's ID, the phone's region number, and type of request: {\it UploadPhoto}. This packet is serialized inside StatusActivity.java into a UDP broadcast that reaches the leader of the region (the first leg of Figure \ref{fig:get-request-png}).
 
-StatusActivity.java contains listeners for the button presses that send requests to its region leader and a handler that processes replies from the region leader. Each phone has a unique id based on its IP address that can help a region’s leader distinguish the non-leader phones in its region.  
+Similarly, pressing a GET request button triggers its button's listener to get information on the target region number that the user is requesting. A UDP packet consisting of the phone's ID, the phone's region number, the target region number, and the type of request: {\it DownloadPhoto}. Again, StatusActivity.java broadcasts this packet to the leader of the region (the first leg of Figure \ref{fig:get-request-png}).
 
-Pressing the TAKE request button triggers that button’s listener to retrieve the photo information from the CameraSurfaceView. The photo data is then put into a packet along with the phone’s ID, the phone’s region number, and type of request, {\it UploadPhoto}. This packet is serialized inside StatusActivity.java into a UDP broadcast that reaches the leader of the region (the first leg).
+Through the ad-hoc Wifi, the TAKE or GET request reaches its leader, which is the original leader of the request. The original leader's UserApp.java:handleClientRequest() processes the UDP packet by the type of request. In both {\it UploadPhoto} and {\it DownloadPhoto}, the original leader sends a DIPLOMA request, along with the additional information from the UDP packet, to the remote leader (the second leg of Figure \ref{fig:get-request-png}). In the {\it UploadPhoto} case, the remote leader is the same as the original leader, since new photos are processed locally (the second leg of Figure \ref{fig:take-request-png}). In the {\it DownloadPhoto} case, the remote leader is the leader of the region of interest. The remote leader's UserApp.java:handleDSMRequest() processes the DIPLOMA request from the original leader. For {\it UploadPhoto}, the leader saves the new photo's byte array as the first element of the photo array list on the region's DIPLOMA memory. (For the experiment, we only saved the newest photo by overwriting the first element of the ArrayList every time. But it is easy to edit the code to save multiple photos in a region.) The reverse occurs for {\it DownloadPhoto}, where the remote leader retrieves the newest photo from the photo array in its DIPLOMA memory.  In both cases, the remote leader sends a reply back to the original leader (the third leg of Figure \ref{fig:get-request-png}), arriving at the original leader's UserApp.java:handleDSMReply(). A DIPLOMA request could time out if the original leader does not get a reply from the remote leader within a certain time, in which case the original leader will send a fake self reply to itself with a timedOut field flag switched on. The handleDSMReply() function on the original leader sends a UDP packet, containing the timed out flag and in the case of {\it DownloadPhoto} the photo data, back to the original phone that made the request (the fourth leg of Figure \ref{fig:get-request-png}).
 
-Similarly, pressing a GET request button, requesting the newest photo from a remote region, triggers the request buttons’ listener to get information on the target region number that the user is requesting. A UDP packet consisting of the phone’s ID, the phone’s region number, the target region number, and the type of request, {\it DownloadPhoto}. Again, StatusActivity.java broadcasts this packet to the leader of the region (the first leg).
+Finally the original phone's StatusActivity.java handler receives the UDP reply from its leader and logs the reply information, including whether the request was completed successfully and whether DIPLOMA timed out. If the request was a GET, the remote region's newest photo is displayed. For TAKE requests, the leader displays the newest uploaded photo.
 
-Through the ad-hoc Wifi, the TAKE or GET request reaches its leader, which is the original leader of the request. The original leader’s UserApp.java:handleClientRequest() processes the UDP packet by the type of request. In both {\it UploadPhoto} and {\it DownloadPhoto}, the original leader sends a DIPLOMA request, along with the additional information from the UDP packet, to the remote leader (the second leg). In the {\it UploadPhoto} case, the remote leader is the same as the original leader, since new photos are processed locally. In the {\it DownloadPhoto} case, the remote leader is the leader of the region of interest. The remote leader's UserApp.java:handleDSMRequest() processes the DIPLOMA request from the original leader. For {\it UploadPhoto}, the leader saves the new photo's byte array as the first element of the photo array list on the region's DIPLOMA memory. (For the experiment, we only saved the newest photo by overwriting the first element of the ArrayList every time. But it is easy to edit the code to save multiple photos in a region.) The reverse occurs for {\it DownloadPhoto}, where the remote leader retrieves the newest photo from the photo array in its DIPLOMA memory.  In both cases, the remote leader sends a reply back to the original leader (the third leg), arriving at the original leader’s UserApp.java:handleDSMReply(). A DIPLOMA request could time out if the original leader does not get a reply from the remote leader within a certain time, in which case the original leader will send a fake self reply with a timedOut field flag switched on. The handleDSMReply() function sends a UDP packet, containing the timed out flag and in the case of {\it DownloadPhoto} the photo data, back to the original phone that made the request (the fourth leg).
-
-Finally the original phone's StatusActivity.java handler receives the UDP reply from its leader and logs the reply information, including whether DIPLOMA timed out. If the request was a GET, the remote region’s newest photo is displayed. For TAKE requests, the leader displays the newest uploaded photo.
+Server side DIPLOMA time-outs, which occur in the second or fourth leg, were logged as failures. Failures in the first or fourth leg would trigger client side time outs and be logged as timed-outs.
 
 Latency is obtained from time stamps taken right before the first leg and right after the fourth leg, it is the total time of all four legs. We also logged the time for just the DIPLOMA portion, legs two and three, but we did not analyze this data.
