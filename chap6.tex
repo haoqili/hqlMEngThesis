@@ -10,7 +10,7 @@ We performed a total of 6 data-collection experiments in a span of almost 2 mont
 
 \subsection{Experimental Setup and Measurement Methodology}
 
-We had a total of 40 Android phones in two types: 20 Nexus S phones and 20 Galaxy Note phones. The Nexus S phones ran the Ice Cream Sandwich platform (Android 4.0) and the Galaxy Note phones ran the Gingerbread platform (Android 2.3). The Nexus S phones had the 3G cellular connection and the Galaxy Note phones had the 4G cellular connection. In the later experiments the Galaxy Notes could switch between 3G and 4G. We ran the 3G and 4G experiments independently.
+We had a total of 40 Android phones 20 Nexus S phones and 20 Galaxy Note phones. The Nexus S phones ran the Ice Cream Sandwich platform (Android 4.0) and the Galaxy Note phones ran the Gingerbread platform (Android 2.3). The Nexus S phones had the 3G cellular connection and the Galaxy Note phones had the 4G cellular connection. In the later experiments the Galaxy Notes could switch between 3G and 4G. We ran the 3G and 4G experiments independently.
 
 For each phone type, we loaded CameraDP on half of the phones and CameraCL on the others. We installed onto the phones with the CameraDP app a customized Barnacle Wifi tether app \cite{barnacle} to provide ad-hoc Wifi. 
 
@@ -19,7 +19,7 @@ The pre-experimental checklist:
 \item
 Make sure 3G or 4G is on by checking the top right icon on the phones: \textquotedblleft LTE" indicates 4G and \textquotedblleft 4G" indicates 3G (HSPA is originally considered a 3G technology).
 \item
-Start the CameraDP server and CameraCL server, also making sure that their IP addresses and port numbers are matched is the {\it Globals.CSM\_SERVER\_NAME} and {\it Globals.CLOUD\_SERVER\_NAME} strings respectively.
+Start the CameraDP server and CameraCL server, also making sure that their IP addresses and port numbers are matched in the {\it Globals.CSM\_SERVER\_NAME} and {\it Globals.CLOUD\_SERVER\_NAME} strings respectively.
 \item
 Make sure the IP addresses are of the format {\it 192.168.5.*} and are all unique.
 \item
@@ -27,14 +27,14 @@ Start Barnacle on the CameraDP phones.
 \item
 Turn off screen auto-rotate on all phones because screen rotation crashes the app.
 \item
-Make sure the GPS is on (for outdoor experiments)
+Make sure the GPS is on (for outdoor experiments).
 \item
 Clear the old log files saved on the SD cards.
 \end{enumerate}
 
-The volunteers were instructed to walk around independently and freely in the valid regions, pressing buttons to TAKE and GET pictures at their own will and pace. Each volunteer had to hold a phone running CameraDP in one hand and a phone running CameraCL in the other hand. They were instructed to press buttons in the same sequence on both phones.
+The volunteers were instructed to walk around independently and freely in the valid regions, pressing buttons to TAKE and GET pictures at their own will and pace. Each volunteer had to hold a phone running CameraDP in one hand and a phone running CameraCL in the other hand. They were instructed to press buttons simultaneously and in the same sequence on both phones.
 
-The volunteers did not know the details of DIPLOMA other than the fact that regions exist. However from the second experiment onwards, the UI improved so that unfavorable circumstances would prevent GET and TAKE buttons from working. Examples of unfavorable circumstances include: walking out of the valid regions, phones in a state other than LEADER or NONLEADER.
+The volunteers did not know the details of DIPLOMA other than the fact that regions exist. However from the second experiment onwards, the UI improved so that unfavorable circumstances would prevent GET and TAKE buttons from working. Examples of unfavorable circumstances include: walking out of the valid regions, phones in a state other than LEADER or NONLEADER, e.g. JOIN.
 
 If an app hangs for a certain period of time, the Android operating system would prompt a message saying \textquotedblleft xxx is not responding. Would you like to close it? `Wait' `Okay'". We instructed the volunteers that they must press ``Wait", not \textquotedblleft Okay" since pressing `Okay' causes Camera DP to crash at times.
 
@@ -50,7 +50,7 @@ Run Python scripts to generate experiment results by {\it grep}ping for lines co
 
 \subsection{Micro-Experiment 1: Testing DIPLOMA multi-hop and phone WiFi range}
 
-Three people, each held a Galaxy Note phone, conducted the experiment outside the northeastern entrance of the Stata Center. One person stood at the corner of the entrance while the other two people each stood along a different wall. The phones were held vertically, the outer phones faced the middle phone. There were no obstructions in the path of transmission. We would later find out that the range from this test would be too optimistic for multi-user experiments where users moved around and obstructed each other all the time. By first disabling CameraDP on the middle phone, we increased the distance between the middle phone to the two outer phones until the outer phones could not consistently complete GET requests, i.e. they were out of each other's WiFi range. This distance was about 20 meters for each leg, as labeled in Figure \ref{fig:micro-setup-png}. We then turned on CameraDP on the middle phone and observed that GET requests between the two outer phones worked again, demonstrating that DIPLOMA multi-hop at least works for three phones. 
+Three people, each holding Galaxy Note phone, conducted the experiment outside the northeastern entrance of the Stata Center. One person stood at the corner of the entrance while the other two people each stood along a different wall. The phones were held vertically, the outer phones faced the middle phone. There were no obstructions in the path of transmission. We would later find out that the range from this test would be too optimistic for multi-user experiments where users moved around and obstructed each other all the time. By first disabling CameraDP on the middle phone, we increased the distance between the middle phone to the two outer phones until the outer phones could not consistently complete GET requests, i.e. they were out of each other's WiFi range. This distance was about 20 meters for each leg, as labeled in Figure \ref{fig:micro-setup-png}. We then turned on CameraDP on the middle phone and observed that GET requests between the two outer phones worked again, demonstrating that DIPLOMA multi-hop at least works for three phones. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -76,7 +76,7 @@ Date: March 15, 2012\\
 Weather: Drizzling and cold\\
 Phones: 20 Nexus S: 10 running CameraDP, 10 running CameraCL\\
 People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
-Regions: 6 linear regions each with width 52 meters\\
+Regions: 6 linear regions each of width 52 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/81e87e790}}\\
 {\url{c13ed3c8c4cd45703528e5216f04ec4}}\\
@@ -90,7 +90,7 @@ Before walking to 77 Mass Ave, the servers and the apps were started with Region
 
 No usable quantitative data was extracted from this experiment due to the frequent crashes on both the CameraDP app and CameraCL. Insufficient and inadequate stress testing beforehand meant that these problems were not discovered until the experiment started. Later analysis revealed that the crashes were mainly due to two reasons: double pressing the TAKE button and an OutOfMemory error caused by the camera interface using up too much of the VM heap. 
 
-The region width was too large, preventing successful communication even for phones in the same region. Compounded to this was a bug that forced users to walk to region 0 whenever the apps crashed. The region assignment based on GPS was observed to be robust. There were no requests generated from outside of region 3.
+The region width was too large, preventing successful communication even for phones in the same region. Compounding  was a bug that forced users to walk to region 0 whenever the apps crashed. The region assignment based on GPS was observed to be robust. 
 
 \subsection{Improvements}
 
@@ -99,11 +99,9 @@ One of the biggest reason for the crashes, on both types of phones and on both C
 The OutOfMemory error on Nexus S phones occur when multiple TAKEs were pressed one after the other, which could also have contributed to the frequent crashing during the experiment. The first few TAKEs would behave normally and complete successfully. However around the third to sixth TAKE, the app would crash at the line `BitmapFactory.decodeByteArray()`, which converts the byte array of the image into a bitmap object to be displayed to the user.  To work around this problem, we added an additional parameter into the decodeByteArray function so that the byte array is downsampled once every 12th pixel, greatly reducing the memory requirement. In addition, we manually placed system garbage collection calls before the memory-intensive functions. After these two workarounds were coded, we tested the phone by continuously pressing the TAKEs over 100 times, multiple times, and did not observe any crashes.
 \\
 \\
-The Region 0 bug
+The Region 0 bug that causes users to reset from region 0 after every crash was fixed. The bug came about from the logic to prevent inaccuracies in the GPS location. From pre experiment GPS testing, we observed some rare cases where GPS was very much off for a few seconds. In this case, the region assignment would unrealistically jump across multiple regions. So we put in the logic that unless a new region differs from the old region by 1, the old region remains the same. The code initializes the region to be -1. During Experiment 1, our logic backfired if the app crashes inside regions 1 or above. Since the app would restart and be set to -1 and GPS would indicate the new region should be 1 or above, the logic prevents the old region to be changed unless the user walks back to region 0, the only region that is 1 region away from -1.
 
-The bug that causes users to reset from region 0 after every crash was fixed. The bug came about from the logic to prevent inaccuracies in the GPS location. From pre experiment GPS testing, we observed some rare cases where GPS was greatly off for a few seconds. In this case, the the region assignment would unrealistically jump multiple regions. So we put in the logic that unless a new region differs from the old region by 1, the old region remains the same. The code initializes the region to be -1. During Experiment 1, our logic backfired if the app crashes inside regions 1 or above. Since the app would restart and be set to -1 and GPS would indicate the new region should be 1 or above, the logic prevents the old region to be changed unless the user walks back to region 0, the only region that is 1 region away from -1.
-
-After Experiment 1, we removed this check and let the regions to be updated to any new region, whether the regions might be next to each other or not. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
+After Experiment 1, we removed this check and let the regions be updated to any new region, whether the regions might be next to each other or not. Even though we very occasionally notice that phones would jump to an insensible region, the GPS glitch would only last a few seconds, not long enough to cause any concern.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,7 +113,7 @@ Date: April 6, 2012\\
 Weather: Sunny and cold\\
 Phones: 20 Nexus S and 20 Galaxy Notes: each phone type with 10 running CameraDP, 10 running CameraCL\\
 People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
-Regions: 6 linear regions each with width 52 meters\\
+Regions: 6 linear regions each of width 52 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/}}\\
 {\url{b8a64242d4e6974c74d1c86abdfbb277b5e25f60}}\\
@@ -127,7 +125,7 @@ Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/}}\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htb]
 \begin{scriptsize} 
-\caption{Experiment 2: 4G (Galaxy Notes) Results} 
+\caption{Experiment 2: 4G (Galaxy Notes) Results of All Runs} 
 \label{table:exp-2-4g-results}
  \begin{center}
  \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
@@ -148,7 +146,7 @@ Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/}}\
 
 \begin{table}[htb]
 \begin{scriptsize} 
-\caption{Experiment 2: 3G (Nexus S) Results} 
+\caption{Experiment 2: 3G (Nexus S) Results of All Runs} 
 \label{table:exp-2-3g-results}
  \begin{center}
  \begin{tabular}{| c | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1.4cm} |}
@@ -171,7 +169,7 @@ Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/}}\
 
 \begin{table}[htb]
 \begin{scriptsize} 
-\caption{Experiment 2: 4G (Galaxy Notes) Latency} 
+\caption{Experiment 2: 4G (Galaxy Notes) Latency of All Runs} 
 \label{table:exp-2-4g-latency-results}
  \begin{center}
  \begin{tabular}{| c | p{1.5cm} | p{1.5cm} |}
@@ -210,11 +208,11 @@ Results: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/blob/master/}}\
 \end{table}
 %%%%%%%%%%%%
 
-The server was started in Stata on hermes5.csail.mit.edu, which we later discovered would terminate connections mysteriously. The experiment was conducted on the eastern sidewalk of 436 Mass Ave to 2 blocks northwestwards. This stretch of road is very busy, filled with restaurants and small businesses, which possibly caused a lot of Wifi interference with the large number of Wifi hotspots.
+The server was started in Stata on hermes5.csail.mit.edu, which we later discovered would terminate connections mysteriously and the server had to be restarted. The experiment was conducted on the eastern sidewalk of 436 Mass Ave to 2 blocks northwestwards. This stretch of road is very busy, filled with restaurants and small businesses, which possibly caused a lot of Wifi interference with the large number of Wifi hotspots.
 \\
 \\
 Run 1:
-We handed 2 Nexus S phones to each of the 10 people, 1 Nexus and 1 Galaxy note. When people started to press buttons, the Cloud phone request made the phone hang for over 2-3 minutes. Some phones never stopped hanging. This can be seen in the large CameraCL latency numbers in Table \ref{table:exp-2-3g-latency-results}, which are within a minute, but they are averaged over all the runs in this experiment. Still, these numbers are orders of magnitude larger than the rest of latencies in Table \ref{table:exp-2-3g-latency-results} and Table \ref{table:exp-2-4g-latency-results}. 
+We handed 2 Nexus S phones to each of the 10 people, 1 Nexus and 1 Galaxy note. When people started to press buttons, the Cloud phone request made the phone hang for over 2-3 minutes. Some phones never stopped hanging. This can be seen in the large CameraCL latency numbers in Table \ref{table:exp-2-3g-latency-results}, which are within a minute, but they are averaged over all the runs in this experiment. Still, these numbers are orders of magnitude larger than the rest of latencies in Table \ref{table:exp-2-4g-latency-results} and Table \ref{table:exp-2-3g-latency-results}. 
 
 We decided to restart the servers by connecting a laptop to the strongest free Wifi in the area. Even though we were able to restart the server for run 2, we had to restart the server multiple times in the rest of the runs because the Wifi connection dropped frequently.
 \\
@@ -222,7 +220,7 @@ We decided to restart the servers by connecting a laptop to the strongest free W
 Run 2:
 With the server restarted, we started this run with Galaxy Notes phones instead of Nexus S phones and the exact setup.
 
-The cloud requests did improve and were completed within 20 seconds. However, users complained about phones waiting for a long time to JOIN a region.  People moved around a lot, sometimes forming occasional pairs or triples (to chat with each other). We do not know how many phones in close distance interfered with each other's Wifi. It would not be significant since we rarely observed near-range interference indoors. 
+The cloud requests did improve and were completed within 20 seconds. However, users complained about phones waiting for a long time to JOIN a region for reasons we will discuss later.  People moved around a lot, sometimes forming occasional pairs or triples (to chat with each other). We do not know how many phones in close distance interfered with each other's Wifi. It would not be significant since we rarely observed near-range interference indoors. 
 \\
 \\
 Run 3:
@@ -230,11 +228,11 @@ In a highly mobile setting, we noticed that phones were stalling on JOIN. This w
 
 There were fewer JOIN request hangs in this run. Later we found and fixed bugs in DIPLOMA that caused these hangs.
 
-The low CameraDP GET success, see Tables \ref{table:exp-2-4g-results} and \ref{table:exp-2-3g-results}, was a concern and we decided to improve the setup and code for another experiment. Also note from the result tables that CameraDP had higher success rates and lower latencies with 3G than 4G.
+We found in this experiment that the latency of CameraDP was orders of magnitudes smaller than the latency of CameraCL 3G (Table 6.4) and was only little smaller on 4G (Table 6.3). The low CameraDP GET success, see Tables \ref{table:exp-2-4g-results} and \ref{table:exp-2-3g-results}, was a concern and we decided to improve the setup and code for another experiment. Also note from the result tables that CameraDP had higher success rates and lower latencies with 3G than 4G.
 \\
 \\
 \subsection{Improvements}
-The Wifi was not reliable during this experiment. Even testing pinging between two phones within an arm's distance would fail, most likely due to the Wifi hotspots interference. To fix this, the next experiment was moved back to 77 Mass Ave, a less busier section of the street where all the Wifi hotspots locations were coordinated and arranged by MIT, reducing interference.
+The Wifi was not reliable during this experiment. Even testing pinging between two phones within an arm's distance would fail, most likely due to the Wifi hotspots interference. To fix this, the next experiment was moved back to 77 Mass Ave, a less congested section of the street where all the Wifi hotspots locations were coordinated and arranged by MIT, reducing interference.
 
 The region width of 52 meters was too big. So phones within a region could not hear each other (nonleaders and leaders) and leaders in adjacent regions could not hear each other either. In the next experiment, the region width of the app was decreased to 20 meters. We also made it possible to modify the width during the experiment using the UI.
 
@@ -244,7 +242,7 @@ Most of the time half of the regions were unpopulated, which would cause multi-h
 
 Since hermes5 would drop periodically, we switched to a more reliable server for future experiments. Upon further inspection we found the server would drop connections that have been alive for 12 hours, caused by an AFS permissions issue. Unfortunately, the server was left on the night prior to this experiment. 
 
-We added acks for first and final legs of CameraDP, so that there are 4 chances to make the first leg or final leg succeed \ref{fig:get-request-png}. However after the later experiments we found that this addition did not improve results drastically. Note that these acks had a bug that was not fixed until Experiment 5.
+We added acks for first and final legs of CameraDP, so that there are 4 chances to make the first leg or final leg succeed \ref{fig:get-request-png}. However after the later experiments we found that this addition did not improve results drastically. Note that these acks had a reply counter bug that was not fixed until Experiment 5 (See section 6.5.1).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -256,7 +254,7 @@ Date: April 25, 2012\\
 Weather: Sunny\\
 Phones: 20 Nexus S and 20 Galaxy Notes: each phone type with 10 running CameraDP, 10 running CameraCL\\
 People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
-Regions: 6 linear regions each with width 20 meters\\
+Regions: 6 linear regions each of width 20 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/}}\\
 {\url{e22605b1b644aa60aff54a086526d4bc0f94a7cf}}\\
@@ -366,9 +364,7 @@ There were 4 runs, with the later runs of people concentrated in the first two r
 
 The results of the 4 trials are congregated into Tables \ref{table:exp-3-4g-results} and \ref{table:exp-3-3g-results}. Again inexplicably, CameraDP had higher success rates on 3G than 4G.  CameraDP TAKE failures came from time outs, i.e. requests that do not respond within 6 seconds, which was caused by weak Wifi conditions. For the Nexus S results, 58\% of CameraDP GET requests failed in DIPLOMA, due to the leader being unable to get a response from the requested remote leader. There are two causes for DIPLOMA level failures, either the leaders were not in range with each other or at least one region in the multi-hop path were absent of a leader. The rest of the CameraDP GET requests failed due to the 6-second time out just like the case in TAKEs. For Galaxy Notes, only 22\% of CameraDP GET failures were cause by DIPLOMA.
 
-This is the last experiment where we used multi-hop. The Wifi conditions were not good enough to yield good multi-hop results, see Tables \ref{table:exp-3-4g-hop-results} and \ref{table:exp-3-3g-hop-results}, which was why we stopped using multi-hop.
-
-Due to bad Wifi connectivity outdoors, the future experiments were run indoors in a much smaller area.
+This is the last experiment where we used multi-hop. The Wifi conditions were not good enough to yield good multi-hop results, see Tables \ref{table:exp-3-4g-hop-results} and \ref{table:exp-3-3g-hop-results} due to poor Wifi connectivity outdoors, the future experiments were run indoors in a much smaller area.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -380,7 +376,7 @@ Date: April 30, 2012\\
 Weather: Sunny\\
 Phones: 20 Galaxy Notes: with 10 running CameraDP, 10 running CameraCL\\
 People: 10 People: each held 1 CameraDP and 1 CameraCL of same type of phone\\
-Regions: 6 2x3 or 4 2x2 regions each with width of around 5 meters\\
+Regions: 6 2x3 or 4 2x2 regions each of width of around 5 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/}}\\
 {\url{892b9793536613366b5293eeeda3c48155e70f05}}\\
@@ -556,7 +552,7 @@ Date: May 6, 2012\\
 Weather: Sunny\\
 Phones: 19 Galaxy Notes: with 10 running CameraDP, 9 running CameraCL\\
 People: 2, controlled experiment
-Regions: 6 2x3 regions each with width of around 5 meters\\
+Regions: 6 2x3 regions each of width of around 5 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/}}\\
 {\url{aeb358fc5a8f887c4193d7612538f1f1f46ee90c}}\\
@@ -638,7 +634,7 @@ We noticed the average latencies for CameraCL requests were under a second when 
 
 \subsection{Improvements}
 
-We added a latency information display on the screen so that in the next experiment we could observe in real time the average latency, median latency, and the newest request's latency. This UI addition helped us find the last bit of information that would finally produce our desired results.
+We added a latency information display on the screen so that in the next experiment we could observe in real time the average latency, median latency, and the newest request's latency. This UI addition helped us better understand the reasons behind the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,7 +646,7 @@ Date: May 6, 2012\\
 Weather: Sunny\\
 Phones: 20 Galaxy Notes: with 10 running CameraDP, 10 running CameraCL\\
 People: 2, controlled experiment
-Regions: 6 2x3 regions each with width of around 5 meters\\
+Regions: 6 2x3 regions each of width of around 5 meters\\
 Files:\\
 Code version: {\url{https://github.com/haoqili/Android_DIPLOMA_CAMERA/tree/}}\\
 {\url{7df1600531f730d03cc824984ecb21bb60eabd63}}\\
@@ -802,6 +798,6 @@ The sequence of button presses for the first two runs were as follows: TAKE pict
 
 So for runs 3 and 4 we avoided the warm-up effect by pressing buttons in this sequence: first TAKE pictures on every phone, then GET region 0 on all phones, one by one, then GET region 1 on all phones, etc. So between each addition GET request on a single phone, we'll have waited about a minute, more than enough to make the warm-up effect disappear.  The difference that the warm-up effect makes can be observed by comparing the decreased CameraCL GET latencies in Tables \ref{table:exp-6-run1-results} and \ref{table:exp-6-run2-results} to the normal latencies in Tables \ref{table:exp-6-run3-results} and \ref{table:exp-6-run4-results}. 
 
-Since in the real world users would not be constantly making requests within seconds of each other, the more realistic data are from runs 3 and 4, which omit the warm-up effect.
+Since in the real world users would not be constantly making requests within seconds of each other, we feel the more realistic data are from runs 3 and 4, which do not see the bunching effect.
 
-Without the warm-up effect, our data results are even more promising, showing an average of a 2.6x improvement in 4G (\ref{table:exp-6-run4-results}) with only an 1.4\% decrease in success rate and a 16x improvement in latency over 3G (\ref{table:exp-6-run3-results}) without any decrease in success rate!
+Without the warm-up effect, our data results are even more promising, showing an average of a 2.8x improvement in 4G (\ref{table:exp-6-run4-results}) with only a 3\% decrease in success rate and a 10.9x improvement in latency over 3G (\ref{table:exp-6-run3-results}) without any decrease in success rate!

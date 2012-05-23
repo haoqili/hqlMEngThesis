@@ -11,8 +11,8 @@
 \contentsline {section}{\numberline {6.2}Experiment 1}{28}
 \contentsline {subsection}{\numberline {6.2.1}Improvements}{29}
 \contentsline {section}{\numberline {6.3}Experiment 2}{31}
-\contentsline {subsection}{\numberline {6.3.1}Improvements}{33}
-\contentsline {section}{\numberline {6.4}Experiment 3}{34}
+\contentsline {subsection}{\numberline {6.3.1}Improvements}{34}
+\contentsline {section}{\numberline {6.4}Experiment 3}{35}
 \contentsline {section}{\numberline {6.5}Experiment 4}{37}
 \contentsline {subsection}{\numberline {6.5.1}Improvements}{39}
 \contentsline {section}{\numberline {6.6}Experiment 5}{40}

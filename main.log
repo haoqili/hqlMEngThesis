@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  21 MAY 2012 09:58
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  23 MAY 2012 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -316,6 +316,12 @@ Chapter 1.
 
  (./chap2.tex
 Chapter 2.
+
+Overfull \hbox (3.6284pt too wide) in paragraph at lines 9--10
+\OT1/cmr/m/n/12 CameraDP uses the DIs-tributed Pro-gram-ming Layer Over Mo-bile
+ Agents (DIPLOMA)
+ []
+
 [11
 
 
@@ -330,7 +336,7 @@ File: hysteresis-reg.png Graphic file (type png)
 Package pdftex.def Info: hysteresis-reg.png used on input line 26.
 (pdftex.def)             Requested size: 398.33858pt x 105.81236pt.
 )
-Underfull \vbox (badness 5652) has occurred while \output is active []
+Underfull \vbox (badness 1675) has occurred while \output is active []
 
  [13]
 [14 <./hysteresis-reg.png>]
@@ -346,7 +352,12 @@ Missing character: There is no Â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no Â in font cmr12!
 Missing character: There is no ™ in font cmr12!
-[15
+<uiphone.png, id=55, 356.95096pt x 292.8506pt>
+File: uiphone.png Graphic file (type png)
+ <use uiphone.png>
+Package pdftex.def Info: uiphone.png used on input line 15.
+(pdftex.def)             Requested size: 398.33858pt x 326.81519pt.
+ [15
 
 
 
@@ -354,28 +365,33 @@ Missing character: There is no ™ in font cmr12!
 Underfull \vbox (badness 1675) has occurred while \output is active []
 
  [16])
-[17]
+Overfull \hbox (78.62433pt too wide) in paragraph at lines 34--55
+[]\OT1/cmr/m/n/12 Every pic-ture gen-er-ated from a TAKE is both down-sam-pled 
+(\OT1/cmr/m/it/12 Bitmap-Fac-tory.options.inSampleSize
+ []
+
+[17] [18 <./uiphone.png>]
 \openout2 = `chap4.aux'.
 
- (./chap4.tex [18
-
-
-
-]
+ (./chap4.tex
 Chapter 4.
-<get_request.png, id=68, 702.625pt x 307.1475pt>
+<get_request.png, id=69, 702.625pt x 307.1475pt>
 File: get_request.png Graphic file (type png)
  <use get_request.png>
 Package pdftex.def Info: get_request.png used on input line 13.
 (pdftex.def)             Requested size: 398.33858pt x 174.13387pt.
 
-<take_request.png, id=69, 330.23375pt x 364.36125pt>
+<take_request.png, id=70, 330.23375pt x 364.36125pt>
 File: take_request.png Graphic file (type png)
  <use take_request.png>
 Package pdftex.def Info: take_request.png used on input line 21.
 (pdftex.def)             Requested size: 170.71652pt x 188.36255pt.
 
-[19]
+[19
+
+
+
+]
 Overfull \hbox (28.1942pt too wide) in paragraph at lines 44--45
 \OT1/cmr/m/n/12 the orig-i-nal leader of the re-quest. The orig-i-nal leader's 
 User-App.java:handleClientRequest()
@@ -403,8 +419,8 @@ Chapter 5.
 ]
 Chapter 6.
 [25]
-Overfull \hbox (4.43964pt too wide) in paragraph at lines 22--24
-\OT1/cmr/m/n/12 IP ad-dresses and port num-bers are matched is the \OT1/cmr/m/i
+Overfull \hbox (6.33267pt too wide) in paragraph at lines 22--24
+\OT1/cmr/m/n/12 IP ad-dresses and port num-bers are matched in the \OT1/cmr/m/i
 t/12 Glob-als.CSM[]SERVER[]NAME
  []
 
@@ -413,7 +429,7 @@ Overfull \hbox (4.58438pt too wide) in paragraph at lines 51--51
 []\OT1/cmr/bx/n/14.4 Micro-Experiment 1: Test-ing DIPLOMA multi-hop and
  []
 
-<micro-setup.png, id=98, 434.62375pt x 422.57875pt>
+<micro-setup.png, id=99, 434.62375pt x 422.57875pt>
 File: micro-setup.png Graphic file (type png)
  <use micro-setup.png>
 Package pdftex.def Info: micro-setup.png used on input line 57.
@@ -442,83 +458,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--103
  []
 
 
-Underfull \vbox (badness 1675) has occurred while \output is active []
+Underfull \vbox (badness 5652) has occurred while \output is active []
 
  [30]
-Underfull \hbox (badness 10000) in paragraph at lines 113--126
+Underfull \hbox (badness 10000) in paragraph at lines 111--124
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--218
+Underfull \hbox (badness 10000) in paragraph at lines 211--216
 
  []
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 219--224
+Underfull \hbox (badness 10000) in paragraph at lines 217--222
 
  []
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 225--230
+Underfull \hbox (badness 10000) in paragraph at lines 223--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--236
+Underfull \hbox (badness 10000) in paragraph at lines 231--234
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--236
+Underfull \hbox (badness 10000) in paragraph at lines 231--234
 
  []
 
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 254--267
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33]
+Underfull \hbox (badness 10000) in paragraph at lines 252--265
 
  []
 
-[34] [35] [36]
-Underfull \hbox (badness 10000) in paragraph at lines 378--391
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34]
+[35] [36]
+Underfull \hbox (badness 10000) in paragraph at lines 374--387
 
  []
 
 [37] [38] [39]
-Underfull \hbox (badness 10000) in paragraph at lines 554--567
+Underfull \hbox (badness 10000) in paragraph at lines 550--563
 
  []
 
-<exp5_setup.jpg, id=143, 3276.24pt x 1959.32pt>
+[40] <exp5_setup.jpg, id=147, 3276.24pt x 1959.32pt>
 File: exp5_setup.jpg Graphic file (type jpg)
  <use exp5_setup.jpg>
-Package pdftex.def Info: exp5_setup.jpg used on input line 629.
+Package pdftex.def Info: exp5_setup.jpg used on input line 625.
 (pdftex.def)             Requested size: 398.33858pt x 238.21751pt.
- [40]
+
 [41 <./exp5_setup.jpg>]
-Overfull \hbox (2.37187pt too wide) in paragraph at lines 648--663
+Overfull \hbox (2.37187pt too wide) in paragraph at lines 644--659
 \OT1/cmr/m/n/12 Phone logs and scripts: $\OT1/cmtt/m/n/10.95 https : / / github
  . com / haoqili / Android _ DIPLOMA _ CAMERA / tree/$ 
  []
 
-<exp6one.png, id=150, 412.25322pt x 591.04291pt>
+<exp6one.png, id=151, 412.25322pt x 591.04291pt>
 File: exp6one.png Graphic file (type png)
  <use exp6one.png>
-Package pdftex.def Info: exp6one.png used on input line 779.
+Package pdftex.def Info: exp6one.png used on input line 775.
 (pdftex.def)             Requested size: 398.33858pt x 571.09236pt.
 
-<exp6all.png, id=151, 809.424pt x 607.068pt>
+<exp6all.png, id=152, 809.424pt x 607.068pt>
 File: exp6all.png Graphic file (type png)
  <use exp6all.png>
-Package pdftex.def Info: exp6all.png used on input line 787.
+Package pdftex.def Info: exp6all.png used on input line 783.
 (pdftex.def)             Requested size: 398.33858pt x 298.7535pt.
  [42]
-Underfull \hbox (badness 10000) in paragraph at lines 797--802
+Underfull \hbox (badness 10000) in paragraph at lines 793--798
 
  []
 
 [43])
-Underfull \vbox (badness 1776) has occurred while \output is active []
+Underfull \vbox (badness 3471) has occurred while \output is active []
 
  [44]
 [45] [46 <./exp6one.png>] [47 <./exp6all.png>]
@@ -547,13 +570,13 @@ Underfull \hbox (badness 1867) in paragraph at lines 34--36
 (./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./chap7.aux)
 (./biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2955 strings out of 493633
- 38470 string characters out of 3143378
- 118398 words of memory out of 3000000
- 6114 multiletter control sequences out of 15000+200000
+ 2961 strings out of 493633
+ 38561 string characters out of 3143378
+ 120409 words of memory out of 3000000
+ 6119 multiletter control sequences out of 15000+200000
  14366 words of font info for 57 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,9n,43p,2035b,304s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,9n,43p,2036b,304s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
@@ -563,10 +586,10 @@ y10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12
 .pfb>
-Output written on main.pdf (51 pages, 13413107 bytes).
+Output written on main.pdf (51 pages, 15302116 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
+ 216 PDF objects out of 1000 (max. 8388607)
  140 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
